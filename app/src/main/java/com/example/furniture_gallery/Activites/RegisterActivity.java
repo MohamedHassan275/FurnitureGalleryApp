@@ -63,8 +63,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return false;
         }
         if (!isVaildEmail(address)) {
-            registerBinding.etAddressRegister.setError("الايميل غير صالح. حاول مرة اخري");
-            registerBinding.etAddressRegister.requestFocus();
+            registerBinding.etEmailRegister.setError("الايميل غير صالح. حاول مرة اخري");
+            registerBinding.etEmailRegister.requestFocus();
             return false;
         }
         if (!isVaildEmail(password)) {
