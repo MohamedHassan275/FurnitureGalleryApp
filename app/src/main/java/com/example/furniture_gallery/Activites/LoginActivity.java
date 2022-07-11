@@ -32,8 +32,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_Continue_SingIn:
-                if(validateInputs()){
-                    startActivity(new Intent(this,HomeMainActivity.class));
+                email = loginBinding.etEmailLogin.getText().toString().trim();
+                password = loginBinding.etPasswordLogin.getText().toString().trim();
+            if(validateInputs()){
+                    startActivity(new Intent(LoginActivity.this,HomeMainActivity.class));
                 }
                 break;
             case R.id.tv_register_byLogin:

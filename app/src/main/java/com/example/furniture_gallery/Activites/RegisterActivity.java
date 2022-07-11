@@ -32,6 +32,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this,LoginActivity.class));
                 break;
                 case R.id.tv_Continue_SingUp:
+                    name = registerBinding.etNameRegister.getText().toString().trim();
+                    email = registerBinding.etEmailRegister.getText().toString().trim();
+                    mobilePhone = registerBinding.etMobilePhoneRegister.getText().toString().trim();
+                    address = registerBinding.etAddressRegister.getText().toString().trim();
+                    password = registerBinding.etPasswordRegister.getText().toString().trim();
+                    confirmPassword = registerBinding.etConfirmPasswordRegister.getText().toString().trim();
+
                    if(validateInputs()){
                        startActivity(new Intent(this,HomeMainActivity.class));
                    }
