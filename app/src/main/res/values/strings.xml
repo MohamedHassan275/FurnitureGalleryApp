@@ -1,12 +1,20 @@
 <resources>
     <string name="app_name">Furniture_Gallery</string>
     <string name="login_app">تسجيل الدخول</string>
-    <string name="email_address">البريد الالكتروني او رقم الهاتف</string>
+    <string name="register_app">انشاء حساب</string>
+    <string name="email_address_mobile_phone">البريد الالكتروني او رقم الهاتف</string>
+    <string name="email_address">البريد الالكتروني</string>
+    <string name="name">الاسم</string>
+    <string name="mobile_phone">رقم الهاتف</string>
+    <string name="confirm_password">تأكيد كلمة السر</string>
+    <string name="address">العنوان</string>
     <string name="password">كلمة السر</string>
     <string name="forgot_password">نسيت كلمة السر ؟ </string>
     <string name="login_with">او سجل عن طريق </string>
     <string name="login_with_facebook">تسجيل عن طريق فيسبوك </string>
     <string name="login_with_google">تسجيل عن طريق جوجل </string>
     <string name="register_by_login1">ليس لدي حساب ؟ </string>
+    <string name="register_by_register1">لدي حساب ؟ </string>
+    <string name="register_by_register2">تسجيل الدخول </string>
     <string name="register_by_login2">تسجيل </string>
 </resources>

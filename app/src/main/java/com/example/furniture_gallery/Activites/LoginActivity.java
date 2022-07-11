@@ -2,6 +2,7 @@ package com.example.furniture_gallery.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     ActivityLoginBinding loginBinding;
     private static final String KEY_EMPTY = "";
-    String email,password,btn_login,btn_register;
+    String email,password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +23,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginBinding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(loginBinding.getRoot());
 
-        loginBinding.etEmailLogin.setOnClickListener(this);
-        loginBinding.etPasswordLogin.setOnClickListener(this);
+        loginBinding.tvRegisterByLogin.setOnClickListener(this);
+        loginBinding.tvContinueSingIn.setOnClickListener(this);
+        loginBinding.uiImageViewPasswordLogin.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.et_email_Login:
+            case R.id.tv_Continue_SingIn:
+                if(validateInputs()){
+                    startActivity(new Intent(this,HomeMainActivity.class));
+                }
+                break;
+            case R.id.tv_register_byLogin:
+                startActivity(new Intent(this,RegisterActivity.class));
+                break;
+            case R.id.ui_ImageViewPasswordLogin:
+
                 break;
         }
     }

@@ -42,7 +42,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/design_edit_text"
-                android:hint="@string/email_address"
+                android:hint="@string/email_address_mobile_phone"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
@@ -121,7 +121,7 @@
                     android:text="@string/forgot_password"
                     android:textStyle="normal"
                     android:textColor="@color/Color_App1"
-                    android:textSize="19sp"
+                    android:textSize="17sp"
                     android:visibility="visible" />
 
                 <View
@@ -140,7 +140,7 @@
                 android:id="@+id/RelativeLayout_TimeOfWork"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_height="wrap_content">
@@ -163,7 +163,7 @@
                     android:layout_gravity="center"
                     android:text="@string/login_with"
                     android:textColor="@color/Color_App1"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <View
                     android:layout_weight="1"
@@ -208,7 +208,7 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:gravity="center"
@@ -216,6 +216,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv_register_byLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -223,7 +224,7 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginEnd="1dp"
                     android:textColor="@color/Color_App1"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="normal" />
 
                 <TextView
@@ -234,7 +235,7 @@
                     android:layout_marginEnd="1dp"
                     android:text="@string/register_by_login1"
                     android:textColor="@color/Color_App1"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="normal" />
 
 
