@@ -13,7 +13,7 @@ public class Language {
         PreferenceHelperChoseLanguage preferenceHelper = PreferenceHelperChoseLanguage.getInstans(context);
         if(preferenceHelper.getLang()==null){
 
-            languageToLoad = "en";
+            languageToLoad = "ar";
 
         }else {
 

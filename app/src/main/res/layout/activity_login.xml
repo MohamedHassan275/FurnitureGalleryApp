@@ -1,9 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activites.LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/image_login" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/login_app"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_email_Login"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/design_edit_text"
+                android:hint="@string/email_address"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/gray_second"
+                android:textColorHint="@color/gray_second"
+                android:textSize="13sp" />
+
+
+            <LinearLayout
+                android:id="@+id/relativeClinicNameSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/design_edit_text"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+
+                <ImageView
+                    android:id="@+id/ui_ImageViewPasswordLogin"
+                    android:layout_width="19dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/visibility_password" />
+
+                <EditText
+                    android:id="@+id/et_password_Login"
+                    android:layout_width="0dp"
+                    android:layout_height="33dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/design_edit_text"
+                    android:hint="@string/password"
+                    android:inputType="textVisiblePassword"
+                    android:paddingStart="10sp"
+                    android:paddingEnd="10sp"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_second"
+                    android:textColorHint="@color/gray_second"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_Continue_SingIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/button_design"
+                android:gravity="center"
+                android:text="@string/login_app"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:id="@+id/tv_Forgetpassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forgot_password"
+                    android:textStyle="normal"
+                    android:textColor="@color/Color_App1"
+                    android:textSize="19sp"
+                    android:visibility="visible" />
+
+                <View
+                    android:id="@+id/ViewLineForgetpassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/tv_Forgetpassword"
+                    android:layout_alignStart="@id/tv_Forgetpassword"
+                    android:layout_alignEnd="@+id/tv_Forgetpassword"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/Color_App1" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/RelativeLayout_TimeOfWork"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_weight="1"
+                    android:id="@+id/ViewLineOffer1"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_weight="1.1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/login_with"
+                    android:textColor="@color/Color_App1"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_weight="1"
+                    android:id="@+id/ViewLineOffer2"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/gray" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_SingIn_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/button_design_facebook"
+                android:gravity="center"
+                android:text="@string/login_with_facebook"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_SingIn_google"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/button_design_google"
+                android:gravity="center"
+                android:text="@string/login_with_google"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/register_by_login2"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:textColor="@color/Color_App1"
+                    android:textSize="13sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:text="@string/register_by_login1"
+                    android:textColor="@color/Color_App1"
+                    android:textSize="13sp"
+                    android:textStyle="normal" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>
