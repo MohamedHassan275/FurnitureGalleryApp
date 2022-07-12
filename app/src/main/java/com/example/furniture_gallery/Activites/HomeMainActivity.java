@@ -137,6 +137,9 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
             case R.id.tv_moreWatchCategory:
                 startActivity(new Intent(HomeMainActivity.this,CategoryListActivity.class));
                 break;
+            case R.id.tv_moreWatchSavesDiscount:
+                startActivity(new Intent(HomeMainActivity.this,SavingsOffersActivity.class));
+                break;
         }
     }
 }
