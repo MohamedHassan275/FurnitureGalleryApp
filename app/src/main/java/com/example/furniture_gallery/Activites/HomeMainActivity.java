@@ -43,6 +43,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeMainBinding.tvMoreWatchCategory.setOnClickListener(this);
+        homeMainBinding.tvMoreWatchSavesDiscount.setOnClickListener(this);
 
        GetCategoryItem();
        GetSavesOfferItem();
@@ -93,34 +94,24 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
         homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
 
-        homeMainBinding.SwipeRefreshLayoutSavesOffer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
-                homeMainBinding.SwipeRefreshLayoutSavesOffer.setRefreshing(false);
-
-            }
-        });
-
         homeMainBinding.progressBarCyclicSavesOffer.setVisibility(View.VISIBLE);
+
         homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if(homeModel.getStatus()){
-                    homeMainBinding.progressBarCyclicSavesOffer.setVisibility(View.GONE);
                     HomeResponseModel homeResponseModel = homeModel.getData();
                     offerHomeResponseModels = homeResponseModel.getOffers();
                     if (offerHomeResponseModels.size() > 0){
                         homeMainBinding.progressBarCyclicSavesOffer.setVisibility(View.GONE);
-                        savesOfferHomeAdapter = new SavesOfferHomeAdapter(offerHomeResponseModels);
-                        homeMainBinding.recyclerViewSavesOffer.setLayoutManager(new LinearLayoutManager(HomeMainActivity.this,RecyclerView.HORIZONTAL,false));
+                        savesOfferHomeAdapter = new SavesOfferHomeAdapter(HomeMainActivity.this,offerHomeResponseModels);
+                        homeMainBinding.recyclerViewSavesOffer.setLayoutManager(new LinearLayoutManager(HomeMainActivity.this, RecyclerView.HORIZONTAL,false));
                         homeMainBinding.recyclerViewSavesOffer.setHasFixedSize(true);
-                        homeMainBinding.recyclerViewSavesOffer.setAdapter(categoryHomeAdapter);
+                        homeMainBinding.recyclerViewSavesOffer.setAdapter(savesOfferHomeAdapter);
 
                     }else {
                         homeMainBinding.progressBarCyclicSavesOffer.setVisibility(View.GONE);
-                        homeMainBinding.tvNoDataSavesOffer.setVisibility(View.VISIBLE);
+                        homeMainBinding.tvNoDataCategory.setVisibility(View.VISIBLE);
 
                     }
                 }else {

@@ -51,7 +51,7 @@ public class SavingsOffersActivity extends AppCompatActivity implements View.OnC
                     offerHomeResponseModels = homeResponseModel.getOffers();
                     if (offerHomeResponseModels.size() > 0){
                         savesOfferBinding.progressBarCyclicSavesOffer.setVisibility(View.GONE);
-                        savesOfferHomeAdapter = new SavesOfferHomeAdapter(offerHomeResponseModels);
+                        savesOfferHomeAdapter = new SavesOfferHomeAdapter(SavingsOffersActivity.this,offerHomeResponseModels);
                         savesOfferBinding.recyclerViewCategoryList.setLayoutManager(new LinearLayoutManager(SavingsOffersActivity.this, RecyclerView.VERTICAL,false));
                         savesOfferBinding.recyclerViewCategoryList.setHasFixedSize(true);
                         savesOfferBinding.recyclerViewCategoryList.setAdapter(savesOfferHomeAdapter);
