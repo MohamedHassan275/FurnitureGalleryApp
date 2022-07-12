@@ -30,7 +30,7 @@ public class DiscountHomeResponseModel {
     private String productDescription;
     @SerializedName("images")
     @Expose
-    private List<ImageHomeResponeModel> images = null;
+    private List<ImageSliderHomeResponeModel> images = null;
     @SerializedName("furniture_id")
     @Expose
     private Integer furnitureId;
@@ -109,11 +109,11 @@ public class DiscountHomeResponseModel {
         this.productDescription = productDescription;
     }
 
-    public List<ImageHomeResponeModel> getImages() {
+    public List<ImageSliderHomeResponeModel> getImages() {
         return images;
     }
 
-    public void setImages(List<ImageHomeResponeModel> images) {
+    public void setImages(List<ImageSliderHomeResponeModel> images) {
         this.images = images;
     }
 

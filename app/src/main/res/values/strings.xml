@@ -22,4 +22,6 @@
     <string name="offer_saves">عروض التوفير</string>
     <string name="watch_more">مشاهدة المزيد</string>
     <string name="no_data">لا يوجد بيانات</string>
+    <string name="order_now">اطلب الان</string>
+    <string name="price_offer">سعر العرض : </string>
 </resources>

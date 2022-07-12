@@ -3,7 +3,7 @@ package com.example.furniture_gallery.Model.UserResponseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ImageHomeResponeModel {
+public class ImageSliderHomeResponeModel {
 
     @SerializedName("id")
     @Expose

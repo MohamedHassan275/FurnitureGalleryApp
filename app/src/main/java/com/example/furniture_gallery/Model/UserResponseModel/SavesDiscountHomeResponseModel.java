@@ -44,7 +44,7 @@ public class SavesDiscountHomeResponseModel {
     private Integer minutes;
     @SerializedName("images")
     @Expose
-    private List<ImageHomeResponeModel> images = null;
+    private List<ImageSliderHomeResponeModel> images = null;
     @SerializedName("furniture_id")
     @Expose
     private Integer furnitureId;
@@ -166,11 +166,11 @@ public class SavesDiscountHomeResponseModel {
         this.minutes = minutes;
     }
 
-    public List<ImageHomeResponeModel> getImages() {
+    public List<ImageSliderHomeResponeModel> getImages() {
         return images;
     }
 
-    public void setImages(List<ImageHomeResponeModel> images) {
+    public void setImages(List<ImageSliderHomeResponeModel> images) {
         this.images = images;
     }
 

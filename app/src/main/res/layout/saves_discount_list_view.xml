@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <RelativeLayout
+      android:layout_margin="5dp"
+      android:layout_width="match_parent"
+      android:layout_height="300dp">
+
+      <LinearLayout
+          android:id="@+id/LinearLayoutSavesDiscount"
+          android:orientation="horizontal"
+          android:layout_margin="0dp"
+          android:background="@drawable/edit_text_design2"
+          android:layout_width="match_parent"
+          android:layout_height="250dp">
+
+          <ImageView
+              android:layout_weight="1"
+              android:id="@+id/ImageViewSlider"
+              android:layout_marginStart="10dp"
+              android:layout_marginEnd="10dp"
+              android:scaleType="fitCenter"
+              android:layout_width="match_parent"
+              android:layout_height="150dp"
+              android:layout_gravity="center"
+              android:src="@drawable/group" />
+
+          <RelativeLayout
+              android:orientation="vertical"
+              android:layout_weight="1"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <TextView
+                  android:id="@+id/tv_nameSavesOffer"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentEnd="true"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginEnd="10dp"
+                  android:text="@string/order_now"
+                  android:textColor="@color/black"
+                  android:textSize="19sp"
+                  android:textStyle="normal"
+                  android:visibility="visible" />
+
+              <RelativeLayout
+                  android:id="@+id/RelativeLayout_ProductSaves"
+                  android:layout_below="@+id/tv_nameSavesOffer"
+                  android:layout_marginTop="5dp"
+                  android:layout_marginStart="5dp"
+                  android:layout_marginEnd="5dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="100dp">
+
+                  <TextView
+                      android:id="@+id/tv_noDataSavesOffer"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:text="@string/no_data"
+                      android:textColor="@color/black"
+                      android:textSize="17sp"
+                      android:visibility="gone"
+                      android:textStyle="normal" />
+
+                  <ProgressBar
+                      android:id="@+id/progressBar_cyclic_SavesOffer"
+                      style="?android:attr/progressBarStyleLarge"
+                      android:layout_width="35dp"
+                      android:layout_height="35dp"
+                      android:layout_gravity="center"
+                      android:gravity="center"
+                      android:theme="@style/ProgressBarColor"
+                      android:layout_centerInParent="true"
+                      android:visibility="gone" />
+
+                  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                      android:id="@+id/SwipeRefreshLayoutSavesOffer"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="5dp"
+                      android:layout_marginEnd="5dp">
+
+                      <androidx.recyclerview.widget.RecyclerView
+                          android:id="@+id/recyclerView_SavesOffer"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="0dp"
+                          android:layout_marginEnd="0dp"/>
+
+                  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+              </RelativeLayout>
+
+              <LinearLayout
+                  android:id="@+id/LinearLayoutFurnitureSavesDiscount"
+                  android:layout_width="150dp"
+                  android:layout_height="35dp"
+                  android:layout_below="@+id/RelativeLayout_ProductSaves"
+                  android:layout_alignParentEnd="true"
+                  android:layout_marginEnd="10sp"
+                  android:orientation="horizontal"
+                  android:visibility="visible">
+
+                  <TextView
+                      android:id="@+id/tv_NameFurnitureSavesDiscount"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:layout_weight="2"
+                      android:text="@string/order_now"
+                      android:textColor="@color/black"
+                      android:textSize="13sp"
+                      android:textStyle="normal"
+                      android:visibility="visible" />
+
+                  <ImageView
+                      android:id="@+id/ImageFurnitureSavesDiscount"
+                      android:layout_width="25dp"
+                      android:layout_height="25dp"
+                      android:layout_gravity="center"
+                      android:layout_marginStart="3dp"
+                      android:layout_marginEnd="3dp"
+                      android:layout_weight="1"
+                      android:src="@drawable/group" />
+
+              </LinearLayout>
+
+              <RelativeLayout
+                  android:id="@+id/LinearLayoutPriceFurnitureSavesDiscount"
+                  android:layout_width="150dp"
+                  android:layout_height="35dp"
+                  android:layout_below="@+id/LinearLayoutFurnitureSavesDiscount"
+                  android:layout_alignParentEnd="true"
+                  android:layout_marginEnd="10sp"
+                  android:orientation="horizontal"
+                  android:visibility="visible">
+
+                  <TextView
+                      android:id="@+id/tv_TitlePriceFurnitureSavesDiscount"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentEnd="true"
+                      android:layout_marginEnd="10sp"
+                      android:text="@string/price_offer"
+                      android:layout_centerVertical="true"
+                      android:textColor="@color/transparent2"
+                      android:textSize="13sp"
+                      android:textStyle="normal"
+                      android:visibility="visible" />
+
+                  <TextView
+                      android:id="@+id/tv_PricePriceFurnitureSavesDiscount"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerVertical="true"
+                      android:layout_marginEnd="5dp"
+                      android:layout_toStartOf="@+id/tv_TitlePriceFurnitureSavesDiscount"
+                      android:text="200 جنيه"
+                      android:textColor="@color/Color_App1"
+                      android:textSize="12sp"
+                      android:textStyle="normal"
+                      android:visibility="visible" />
+
+              </RelativeLayout>
+
+          </RelativeLayout>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/tv_orderNow"
+          android:layout_width="150dp"
+          android:layout_height="50sp"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentStart="true"
+          android:layout_marginStart="75dp"
+          android:layout_marginBottom="30dp"
+          android:background="@drawable/button_design2"
+          android:orientation="horizontal"
+          android:visibility="visible">
+
+          <TextView
+              android:layout_weight="2"
+              android:id="@+id/tv_searchView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/order_now"
+              android:textStyle="normal"
+              android:layout_gravity="center"
+              android:textColor="@color/white"
+              android:textSize="17sp"
+              android:visibility="visible" />
+
+          <ImageView
+              android:layout_weight="1"
+              android:id="@+id/ui_ImageViewFilter"
+              android:layout_marginStart="5dp"
+              android:layout_marginEnd="5dp"
+              android:layout_width="35dp"
+              android:layout_height="35dp"
+              android:layout_gravity="center"
+              android:src="@drawable/group" />
+
+      </LinearLayout>
+  </RelativeLayout>
+</LinearLayout>
