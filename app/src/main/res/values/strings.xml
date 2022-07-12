@@ -17,4 +17,9 @@
     <string name="register_by_register1">لدي حساب ؟ </string>
     <string name="register_by_register2">تسجيل الدخول </string>
     <string name="register_by_login2">تسجيل </string>
+    <string name="search_furniture">بحث عن اثاث</string>
+    <string name="search_furniture2">اكتشف احسن الاثاث</string>
+    <string name="offer_saves">عروض التوفير</string>
+    <string name="watch_more">مشاهدة المزيد</string>
+    <string name="no_data">لا يوجد بيانات</string>
 </resources>

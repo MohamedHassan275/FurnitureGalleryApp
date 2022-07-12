@@ -14,28 +14,39 @@
         android:theme="@style/Theme.Furniture_Gallery"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".Activites.DetailsFurnitureActivity"
+        <activity android:name=".Activites.CategoryListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Furniture_Gallery.NoActionBar"/>
+        <activity
+            android:name=".Activites.DetailsFurnitureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
-        <activity android:name=".Activites.FurnitureActivity"
+        <activity
+            android:name=".Activites.FurnitureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
-        <activity android:name=".Activites.CategoryItemActivity"
+        <activity
+            android:name=".Activites.CategoryItemActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
-        <activity android:name=".Activites.CategoryItemDetailsActivity"
+        <activity
+            android:name=".Activites.CategoryItemDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
-        <activity android:name=".Activites.CategriesFurnitureActivity"
+        <activity
+            android:name=".Activites.CategriesFurnitureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
-        <activity android:name=".Activites.SavingsOffersActivity"
+        <activity
+            android:name=".Activites.SavingsOffersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
-        <activity android:name=".Activites.DiscountActivity"
+        <activity
+            android:name=".Activites.DiscountActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
-        <activity android:name=".Activites.DiscountOfferActivity"
+        <activity
+            android:name=".Activites.DiscountOfferActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
         <activity

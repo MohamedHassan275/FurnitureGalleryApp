@@ -19,4 +19,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ProgressBarColor">
+        <item name="colorAccent">@color/Color_App6</item> <!-- Whatever color you want-->
+    </style>
+
+<!--    <style name="myRatingbar" parent="@android:style/Widget.RatingBar">-->
+<!--        <item name="android:progressDrawable">@drawable/my_ratingbar</item>-->
+<!--        <item name="android:minHeight">15dip</item>-->
+<!--        <item name="android:maxHeight">19dip</item>-->
+<!--    </style>-->
+
 </resources>
