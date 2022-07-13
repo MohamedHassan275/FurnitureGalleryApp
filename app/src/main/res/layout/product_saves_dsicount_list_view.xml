@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_alignParentEnd="true"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -11,6 +12,15 @@
         android:layout_margin="10dp"
         android:orientation="horizontal"
         android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/ImageProductSavesDiscount"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@drawable/giftbox" />
 
         <TextView
             android:id="@+id/tv_titleProductSavesDiscount"
@@ -24,15 +34,6 @@
             android:textSize="15sp"
             android:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/ImageProductSavesDiscount"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:src="@drawable/giftbox" />
-
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

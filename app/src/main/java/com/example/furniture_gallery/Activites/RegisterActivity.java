@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.furniture_gallery.Core.Language.Language;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.R;
 import com.example.furniture_gallery.databinding.ActivityRegisterBinding;
 
@@ -14,9 +16,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     ActivityRegisterBinding registerBinding;
     private static final String KEY_EMPTY = "";
     String name,email,mobilePhone,address,password,confirmPassword;
+    PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(this);
+        Language.changeLanguage(this,preferenceHelperChoseLanguage.getLang());
         registerBinding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(registerBinding.getRoot());
 

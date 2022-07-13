@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.ProductOfferHomeResponesModel;
 import com.example.furniture_gallery.Model.UserResponseModel.SavesDiscountHomeResponseModel;
@@ -37,7 +38,7 @@ public class SavesDiscountHomeAdapter extends RecyclerView.Adapter<SavesDiscount
     List<ProductOfferHomeResponesModel> productOfferHomeResponesModels;
     ProductSavesOfferHomeAdapter productSavesOfferHomeAdapter;
     private SetOnSavesDiscountHomeItemClickListener mclickListener;
-
+    PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
     public SavesDiscountHomeAdapter(Context context, List<SavesDiscountHomeResponseModel> offerHomeResponseModels) {
         this.context = context;
         this.savesDiscountHomeResponseModels = offerHomeResponseModels;
@@ -61,6 +62,7 @@ public class SavesDiscountHomeAdapter extends RecyclerView.Adapter<SavesDiscount
     @Override
     public void onBindViewHolder(@NonNull SavesDiscountHomeAdapter.ViewHolder holder, int position) {
 
+        preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(context);
         SavesDiscountHomeResponseModel savesDiscountHomeResponseModel = savesDiscountHomeResponseModels.get(position);
 
         Picasso.get().load(savesDiscountHomeResponseModel.getImages().get(0).getPath()).into(holder.ImageViewSliderDiscountSaves);
@@ -68,15 +70,15 @@ public class SavesDiscountHomeAdapter extends RecyclerView.Adapter<SavesDiscount
         holder.tv_NameFurnitureDiscountSaves.setText(savesDiscountHomeResponseModel.getFurnitureName());
         holder.tv_nameDiscountSaves.setText(savesDiscountHomeResponseModel.getName());
         holder.tv_PricePriceFurnitureDiscountSaves.setText(String.valueOf(savesDiscountHomeResponseModel.getPrice()));
-        holder.tv_TimeDiscountSaves1.setText(String.valueOf(savesDiscountHomeResponseModel.getHours()));
-        holder.tv_TimeDiscountSaves2.setText(String.valueOf(savesDiscountHomeResponseModel.getMinutes()));
-        holder.tv_TimeDiscountSaves3.setText(String.valueOf(0));
-        holder.tv_TimeDiscountSaves4.setText(String.valueOf(0));
+        holder.tv_TimeDiscountSaves4.setText(String.valueOf(savesDiscountHomeResponseModel.getHours()));
+        holder.tv_TimeDiscountSaves3.setText(String.valueOf(savesDiscountHomeResponseModel.getMinutes()));
+        holder.tv_TimeDiscountSaves2.setText(String.valueOf(0));
+        holder.tv_TimeDiscountSaves1.setText(String.valueOf(0));
 
 
 
         holder.progressBar_cyclic_DiscountSaves.setVisibility(View.VISIBLE);
-        Call<HomeModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetDetailsHomeModel("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+        Call<HomeModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetDetailsHomeModel("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
         call.enqueue(new Callback<HomeModel>() {
             @Override
             public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {

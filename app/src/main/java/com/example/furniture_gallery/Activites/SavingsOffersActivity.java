@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.furniture_gallery.Adapters.CategoryHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
+import com.example.furniture_gallery.Core.Language.Language;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.OfferHomeResponseModel;
@@ -30,16 +32,19 @@ public class SavingsOffersActivity extends AppCompatActivity implements View.OnC
     HomeViewModel homeViewModel;
     List<OfferHomeResponseModel> offerHomeResponseModels = new ArrayList<>();
     SavesOfferHomeAdapter savesOfferHomeAdapter;
+    PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(this);
+        Language.changeLanguage(this,preferenceHelperChoseLanguage.getLang());
         savesOfferBinding = ActivitySavingsOffersBinding.inflate(getLayoutInflater());
         setContentView(savesOfferBinding.getRoot());
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
 
         savesOfferBinding.progressBarCyclicSavesOffer.setVisibility(View.VISIBLE);
 

@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.furniture_gallery.Adapters.SavesDiscountHomeAdapter;
+import com.example.furniture_gallery.Core.Language.Language;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.SavesDiscountHomeResponseModel;
@@ -29,17 +31,19 @@ public class DiscountSavesActivity extends AppCompatActivity implements View.OnC
     HomeViewModel homeViewModel;
     List<SavesDiscountHomeResponseModel> savesDiscountHomeResponseModels = new ArrayList<>();
     SavesDiscountHomeAdapter savesDiscountHomeAdapter;
-
+    PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(this);
+        Language.changeLanguage(this,preferenceHelperChoseLanguage.getLang());
         discountSavesBinding = ActivityDiscountSavesBinding.inflate(getLayoutInflater());
         setContentView(discountSavesBinding.getRoot());
 
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
 
         discountSavesBinding.progressBarCyclicDiscountSaves.setVisibility(View.VISIBLE);
 

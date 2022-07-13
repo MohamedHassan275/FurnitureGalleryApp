@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layoutDirection="rtl"
     tools:context=".Activites.RegisterActivity">
 
     <ScrollView
@@ -118,16 +119,6 @@
                 android:orientation="horizontal"
                 android:visibility="visible">
 
-
-                <ImageView
-                    android:id="@+id/ui_ImageViewPasswordRegister"
-                    android:layout_width="19dp"
-                    android:layout_height="17dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/visibility_password" />
-
                 <EditText
                     android:id="@+id/et_password_register"
                     android:layout_width="0dp"
@@ -145,6 +136,15 @@
                     android:textColorHint="@color/gray_second"
                     android:textSize="13sp" />
 
+                <ImageView
+                    android:id="@+id/ui_ImageViewPasswordRegister"
+                    android:layout_width="19dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/visibility_password" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -159,15 +159,6 @@
                 android:orientation="horizontal"
                 android:visibility="visible">
 
-
-                <ImageView
-                    android:id="@+id/ui_ImageViewConfirmPasswordRegister"
-                    android:layout_width="19dp"
-                    android:layout_height="17dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/visibility_password" />
 
                 <EditText
                     android:id="@+id/et_confirm_password_register"
@@ -185,6 +176,16 @@
                     android:textColor="@color/gray_second"
                     android:textColorHint="@color/gray_second"
                     android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/ui_ImageViewConfirmPasswordRegister"
+                    android:layout_width="19dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/visibility_password" />
+
 
             </LinearLayout>
 
@@ -213,18 +214,6 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/tv_login_byRegister"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/register_by_register2"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginEnd="1dp"
-                    android:textColor="@color/Color_App1"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -235,6 +224,17 @@
                     android:textSize="15sp"
                     android:textStyle="normal" />
 
+                <TextView
+                    android:id="@+id/tv_login_byRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/register_by_register2"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:textColor="@color/Color_App1"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
 
 
             </LinearLayout>

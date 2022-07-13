@@ -15,8 +15,8 @@ public class HomeViewModel extends ViewModel {
 
    public MutableLiveData<HomeModel> modelMutableLiveData = new MutableLiveData<>();
 
-    public void getDetailsHome(String AccessToken){
-        Call<HomeModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetDetailsHomeModel(AccessToken);
+    public void getDetailsHome(String AccessToken,String Language){
+        Call<HomeModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetDetailsHomeModel(AccessToken,Language);
         call.enqueue(new Callback<HomeModel>() {
             @Override
             public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {

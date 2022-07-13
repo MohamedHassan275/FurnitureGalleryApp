@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:scaleType="fitCenter"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="15dp"
             android:layout_width="150dp"
             android:layout_centerHorizontal="true"
             android:layout_height="150dp"
@@ -39,10 +39,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="65dp"
+                android:layout_marginTop="50sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10sp"
                 android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/LinearLayoutFurnitureSavesDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/ImageFurnitureDiscountSaves"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="3dp"
+                        android:src="@drawable/group" />
+
+                    <TextView
+                        android:id="@+id/tv_NameFurnitureDiscountSaves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/ImageFurnitureDiscountSaves"
+                        android:text="@string/order_now"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:textStyle="normal"
+                        android:visibility="visible" />
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/LinearLayoutTimeSavesDiscount"
@@ -115,38 +150,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/LinearLayoutFurnitureSavesDiscount"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:visibility="visible">
-
-                    <TextView
-                        android:id="@+id/tv_NameFurnitureDiscountSaves"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:text="@string/order_now"
-                        android:textColor="@color/black"
-                        android:textSize="13sp"
-                        android:textStyle="normal"
-                        android:visibility="visible" />
-
-                    <ImageView
-                        android:id="@+id/ImageFurnitureDiscountSaves"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/group" />
-
-                </LinearLayout>
-
             </LinearLayout>
 
             <RelativeLayout
@@ -159,9 +162,9 @@
                     android:id="@+id/tv_nameDiscountSaves"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
                     android:text="@string/order_now"
                     android:textColor="@color/black"
                     android:textSize="19sp"
@@ -223,11 +226,11 @@
 
                 <RelativeLayout
                     android:id="@+id/LinearLayoutPriceFurnitureDiscountSaves"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_below="@+id/RelativeLayout_ProductSaves"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="10sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="10dp"
                     android:orientation="horizontal"
                     android:visibility="visible">
 
@@ -235,8 +238,8 @@
                         android:id="@+id/tv_TitlePriceFurnitureDiscountSaves"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="10sp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10sp"
                         android:text="@string/price_offer"
                         android:layout_centerVertical="true"
                         android:textColor="@color/transparent2"
@@ -246,12 +249,12 @@
 
                     <TextView
                         android:id="@+id/tv_PricePriceFurnitureDiscountSaves"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="5dp"
-                        android:layout_toStartOf="@+id/tv_TitlePriceFurnitureDiscountSaves"
-                        android:text="200 جنيه"
+                        android:layout_toEndOf="@+id/tv_TitlePriceFurnitureDiscountSaves"
+                        android:text="200 L.E"
                         android:textColor="@color/Color_App1"
                         android:textSize="12sp"
                         android:textStyle="normal"
@@ -263,6 +266,7 @@
                     android:id="@+id/tv_orderNowDiscountSaves"
                     android:layout_width="match_parent"
                     android:layout_height="50sp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:gravity="center"

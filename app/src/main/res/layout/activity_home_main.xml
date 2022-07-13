@@ -25,6 +25,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/relativeClinicNameSignUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/design_edit_text"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/ui_ImageViewFilter"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_searchview" />
+
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/tv_searchView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_furniture"
+                        android:textStyle="normal"
+                        android:layout_gravity="center"
+                        android:textColor="@color/Color_App1"
+                        android:textSize="17sp"
+                        android:visibility="visible" />
+
+
+                    <ImageView
+                        android:id="@+id/ui_ImageViewSearch"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/jam_filter" />
+
+
+                </LinearLayout>
+
                 <ImageView
                     android:id="@+id/ui_ImageViewGiftbox"
                     android:layout_width="22dp"
@@ -43,50 +89,6 @@
                     android:layout_marginEnd="5dp"
                     android:src="@drawable/camera" />
 
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:id="@+id/relativeClinicNameSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/design_edit_text"
-                    android:orientation="horizontal"
-                    android:visibility="visible">
-
-                    <ImageView
-                        android:id="@+id/ui_ImageViewSearch"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/jam_filter" />
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:id="@+id/tv_searchView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/search_furniture"
-                        android:textStyle="normal"
-                        android:layout_gravity="center"
-                        android:textColor="@color/Color_App1"
-                        android:textSize="17sp"
-                        android:visibility="visible" />
-
-                    <ImageView
-                        android:id="@+id/ui_ImageViewFilter"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/ic_searchview" />
-
-
-                </LinearLayout>
-
             </LinearLayout>
 
             <RelativeLayout
@@ -100,8 +102,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="5dp"
                     android:text="@string/watch_more"
                     android:textColor="@color/btn_design"
                     android:textSize="15sp"
@@ -110,12 +112,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/search_furniture2"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -173,17 +175,13 @@
                 android:layout_height="wrap_content">
 
 
-                <TextView
-                    android:id="@+id/tv_moreWatchSavesDiscount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="5dp"
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:text="@string/watch_more"
-                    android:textColor="@color/btn_design"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/offers_homs" />
 
                 <TextView
                     android:layout_weight="1"
@@ -196,13 +194,18 @@
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
+                <TextView
+                    android:id="@+id/tv_moreWatchSavesDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:src="@drawable/offers_homs" />
+                    android:layout_gravity="center"
+                    android:text="@string/watch_more"
+                    android:textColor="@color/btn_design"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
 
             </LinearLayout>
 
@@ -258,18 +261,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:id="@+id/tv_moreWatchDiscountSaves"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="5dp"
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:text="@string/watch_more"
-                    android:textColor="@color/btn_design"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/discounds_image" />
 
                 <TextView
                     android:layout_weight="1"
@@ -282,13 +280,17 @@
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
+                <TextView
+                    android:id="@+id/tv_moreWatchDiscountSaves"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:src="@drawable/discounds_image" />
+                    android:layout_gravity="center"
+                    android:text="@string/watch_more"
+                    android:textColor="@color/btn_design"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
 
             </LinearLayout>
 

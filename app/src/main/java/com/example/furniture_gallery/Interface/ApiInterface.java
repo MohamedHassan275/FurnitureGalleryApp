@@ -14,7 +14,7 @@ public interface ApiInterface {
   //  String URL_IMAGE = "https://tayib.net/new_tayip/";
 
     @GET("home")
-    Call<HomeModel> GetDetailsHomeModel(@Header("Authorization") String Authorization);
+    Call<HomeModel> GetDetailsHomeModel(@Header("Authorization") String Authorization,@Header("Accept-Language") String AcceptLanguage);
 
 //    @GET("countries")
 //    Call<CountiresModel> getCountries();

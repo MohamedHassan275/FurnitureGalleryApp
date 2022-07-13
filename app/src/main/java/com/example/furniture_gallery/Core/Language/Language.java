@@ -17,7 +17,7 @@ public class Language {
 
         }else {
 
-            preferenceHelper.putLang(languageToLoad);
+            preferenceHelper.putLang("ar");
         }
 
         Locale locale = new Locale(languageToLoad);

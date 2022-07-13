@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.furniture_gallery.Activites.SavingsOffersActivity;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.CategoryHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
@@ -43,7 +44,7 @@ public class SavesOfferHomeAdapter extends RecyclerView.Adapter<SavesOfferHomeAd
     List<ProductOfferHomeResponesModel> productOfferHomeResponesModels;
     ProductSavesOfferHomeAdapter productSavesOfferHomeAdapter;
     private SetOnSavesOfferHomeItemClickListener mclickListener;
-    HomeViewModel homeViewModel;
+    PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
 
     public SavesOfferHomeAdapter(Context context, List<OfferHomeResponseModel> offerHomeResponseModels) {
         this.context = context;
@@ -68,7 +69,9 @@ public class SavesOfferHomeAdapter extends RecyclerView.Adapter<SavesOfferHomeAd
     @Override
     public void onBindViewHolder(@NonNull SavesOfferHomeAdapter.ViewHolder holder, int position) {
 
-        OfferHomeResponseModel categoryHomeResponseModel = offerHomeResponseModels.get(0);
+        preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(context);
+
+        OfferHomeResponseModel categoryHomeResponseModel = offerHomeResponseModels.get(position);
 
         Picasso.get().load(categoryHomeResponseModel.getImages().get(0).getPath()).into(holder.ImageViewSlider);
         Picasso.get().load(categoryHomeResponseModel.getFurnitureLogo()).into(holder.ImageFurnitureSavesDiscount);
@@ -79,7 +82,7 @@ public class SavesOfferHomeAdapter extends RecyclerView.Adapter<SavesOfferHomeAd
 
 
         holder.progressBar_cyclic_SavesOffer.setVisibility(View.VISIBLE);
-        Call<HomeModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetDetailsHomeModel("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+        Call<HomeModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetDetailsHomeModel("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
         call.enqueue(new Callback<HomeModel>() {
             @Override
             public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {

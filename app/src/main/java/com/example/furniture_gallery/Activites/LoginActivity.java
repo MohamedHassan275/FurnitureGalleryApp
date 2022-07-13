@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Switch;
 
+import com.example.furniture_gallery.Core.Language.Language;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.R;
 import com.example.furniture_gallery.databinding.ActivityLoginBinding;
 
@@ -16,10 +18,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ActivityLoginBinding loginBinding;
     private static final String KEY_EMPTY = "";
     String email,password;
+    PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(this);
+        Language.changeLanguage(this,preferenceHelperChoseLanguage.getLang());
         loginBinding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(loginBinding.getRoot());
 

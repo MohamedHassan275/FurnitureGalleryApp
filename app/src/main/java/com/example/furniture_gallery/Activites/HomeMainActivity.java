@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.furniture_gallery.Adapters.CategoryHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesDiscountHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
+import com.example.furniture_gallery.Core.Language.Language;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.CategoryHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
@@ -38,10 +40,12 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
     CategoryHomeAdapter categoryHomeAdapter;
     SavesOfferHomeAdapter savesOfferHomeAdapter;
     SavesDiscountHomeAdapter savesDiscountHomeAdapter;
-
+    PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(this);
+        Language.changeLanguage(this,preferenceHelperChoseLanguage.getLang());
         homeMainBinding = ActivityHomeMainBinding.inflate(getLayoutInflater());
         setContentView(homeMainBinding.getRoot());
 
@@ -57,13 +61,13 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void GetCategoryItem() {
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
 
         homeMainBinding.SwipeRefreshLayoutCategoryList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
                 homeMainBinding.SwipeRefreshLayoutCategoryList.setRefreshing(false);
 
             }
@@ -99,7 +103,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
     private void GetSavesOfferItem() {
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
 
         homeMainBinding.progressBarCyclicSavesOffer.setVisibility(View.VISIBLE);
 
@@ -131,7 +135,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
     private void GetDiscountSavesItem() {
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
 
         homeMainBinding.progressBarCyclicDiscountOffer.setVisibility(View.VISIBLE);
 
