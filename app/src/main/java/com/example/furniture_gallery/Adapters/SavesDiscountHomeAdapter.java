@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,6 @@ public class SavesDiscountHomeAdapter extends RecyclerView.Adapter<SavesDiscount
     List<ProductOfferHomeResponesModel> productOfferHomeResponesModels;
     ProductSavesOfferHomeAdapter productSavesOfferHomeAdapter;
     private SetOnSavesDiscountHomeItemClickListener mclickListener;
-    HomeViewModel homeViewModel;
 
     public SavesDiscountHomeAdapter(Context context, List<SavesDiscountHomeResponseModel> offerHomeResponseModels) {
         this.context = context;
@@ -112,7 +112,8 @@ public class SavesDiscountHomeAdapter extends RecyclerView.Adapter<SavesDiscount
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        LinearLayout LinearLayoutSavesDiscount,tv_orderNowDiscountSaves;
+        LinearLayout tv_orderNowDiscountSaves;
+        RelativeLayout RelativeLayoutDiscountSaves;
         TextView tv_NameFurnitureDiscountSaves,tv_noDataDiscountSaves,tv_nameDiscountSaves,tv_PricePriceFurnitureDiscountSaves,
                 tv_TimeDiscountSaves1,tv_TimeDiscountSaves2,tv_TimeDiscountSaves3,tv_TimeDiscountSaves4;
         ProgressBar progressBar_cyclic_DiscountSaves;
@@ -124,6 +125,7 @@ public class SavesDiscountHomeAdapter extends RecyclerView.Adapter<SavesDiscount
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            RelativeLayoutDiscountSaves = itemView.findViewById(R.id.RelativeLayoutDiscountSaves);
             ImageFurnitureDiscountSaves = itemView.findViewById(R.id.ImageFurnitureDiscountSaves);
             ImageViewSliderDiscountSaves = itemView.findViewById(R.id.ImageViewSliderDiscountSaves);
             tv_NameFurnitureDiscountSaves = itemView.findViewById(R.id.tv_NameFurnitureDiscountSaves);
@@ -140,7 +142,7 @@ public class SavesDiscountHomeAdapter extends RecyclerView.Adapter<SavesDiscount
             recyclerView_DiscountSaves = itemView.findViewById(R.id.recyclerView_DiscountSaves);
 
 
-            LinearLayoutSavesDiscount.setOnClickListener(new View.OnClickListener() {
+            RelativeLayoutDiscountSaves.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 

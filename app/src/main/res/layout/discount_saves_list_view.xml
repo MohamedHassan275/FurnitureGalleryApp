@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="390dp"
         android:layout_margin="5dp">
 
         <ImageView
@@ -14,18 +14,18 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:scaleType="fitCenter"
-            android:layout_marginTop="15dp"
-            android:layout_width="125dp"
+            android:layout_marginTop="0dp"
+            android:layout_width="150dp"
             android:layout_centerHorizontal="true"
-            android:layout_height="125dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:src="@drawable/group" />
 
 
         <RelativeLayout
-            android:id="@+id/LinearLayoutSavesDiscount"
+            android:id="@+id/RelativeLayoutDiscountSaves"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="290dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
@@ -54,9 +54,10 @@
                     android:visibility="visible">
 
                     <TextView
+                        android:layout_weight="1"
                         android:id="@+id/tv_TimeDiscountSaves1"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:layout_margin="3dp"
                         android:background="@drawable/text_view_design"
@@ -68,8 +69,9 @@
                         android:visibility="visible" />
 
                     <TextView
+                        android:layout_weight="1"
                         android:id="@+id/tv_TimeDiscountSaves2"
-                        android:layout_width="35dp"
+                        android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:layout_margin="3dp"
@@ -82,8 +84,9 @@
                         android:visibility="visible" />
 
                     <TextView
+                        android:layout_weight="1"
                         android:id="@+id/tv_TimeDiscountSaves3"
-                        android:layout_width="35dp"
+                        android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:layout_margin="3dp"
@@ -96,8 +99,9 @@
                         android:visibility="visible" />
 
                     <TextView
+                        android:layout_weight="1"
                         android:id="@+id/tv_TimeDiscountSaves4"
-                        android:layout_width="35dp"
+                        android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:layout_margin="3dp"
@@ -172,7 +176,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="50sp">
 
                     <TextView
                         android:id="@+id/tv_noDataDiscountSaves"

@@ -2,6 +2,7 @@ package com.example.furniture_gallery.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +37,8 @@ public class DiscountSavesActivity extends AppCompatActivity implements View.OnC
         setContentView(discountSavesBinding.getRoot());
 
 
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
 
         discountSavesBinding.progressBarCyclicDiscountSaves.setVisibility(View.VISIBLE);
@@ -49,7 +52,8 @@ public class DiscountSavesActivity extends AppCompatActivity implements View.OnC
                     if (savesDiscountHomeResponseModels.size() > 0){
                         discountSavesBinding.progressBarCyclicDiscountSaves.setVisibility(View.GONE);
                         savesDiscountHomeAdapter = new SavesDiscountHomeAdapter(DiscountSavesActivity.this,savesDiscountHomeResponseModels);
-                        discountSavesBinding.recyclerViewDiscountSaves.setLayoutManager(new LinearLayoutManager(DiscountSavesActivity.this, RecyclerView.HORIZONTAL,false));
+                        discountSavesBinding.recyclerViewDiscountSaves.setLayoutManager(new LinearLayoutManager(DiscountSavesActivity.this,
+                                RecyclerView.VERTICAL,false));
                         discountSavesBinding.recyclerViewDiscountSaves.setHasFixedSize(true);
                         discountSavesBinding.recyclerViewDiscountSaves.setAdapter(savesDiscountHomeAdapter);
 

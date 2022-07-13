@@ -20,7 +20,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_gravity="center"
-            android:text="@string/offer_discount"
+            android:text="@string/saves_offer"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />
