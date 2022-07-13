@@ -3,10 +3,12 @@ package com.example.furniture_gallery.Activites;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -68,7 +70,7 @@ public class FurnitureNearByActivity extends AppCompatActivity {
                     if (branchTypeHomeResponseModelArrayList.size() > 0) {
                         furnitureNearByBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.GONE);
                         furnitureNearByHomeAdapter = new FurnitureNearByHomeAdapter( branchTypeHomeResponseModelArrayList);
-                        furnitureNearByBinding.recyclerViewFurnitureNearBy.setLayoutManager(new LinearLayoutManager(FurnitureNearByActivity.this, RecyclerView.HORIZONTAL, false));
+                        furnitureNearByBinding.recyclerViewFurnitureNearBy.setLayoutManager(new GridLayoutManager(FurnitureNearByActivity.this,2));
                         furnitureNearByBinding.recyclerViewFurnitureNearBy.setHasFixedSize(true);
                         furnitureNearByBinding.recyclerViewFurnitureNearBy.setAdapter(furnitureNearByHomeAdapter);
 
@@ -84,6 +86,13 @@ public class FurnitureNearByActivity extends AppCompatActivity {
             }
         });
 
+        furnitureNearByBinding.imageBackFurnitureNearBy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(FurnitureNearByActivity.this,HomeMainActivity.class));
+            }
+        });
 
     }
 }
