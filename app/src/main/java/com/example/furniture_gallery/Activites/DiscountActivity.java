@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -77,6 +78,14 @@ public class DiscountActivity extends AppCompatActivity {
                     discountBinding.progressBarCyclicDiscount.setVisibility(View.GONE);
                     Toast.makeText(DiscountActivity.this, "no data with server", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        discountBinding.imageBackDiscount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(DiscountActivity.this,HomeMainActivity.class));
             }
         });
     }

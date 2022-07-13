@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="225dp">
 
         <LinearLayout
             android:id="@+id/LinearLayoutDiscount"
@@ -15,7 +15,7 @@
             android:layout_margin="0dp"
             android:background="@drawable/edit_text_design2"
             android:layout_width="match_parent"
-            android:layout_height="210dp">
+            android:layout_height="190dp">
 
             <LinearLayout
                 android:layout_weight="1"
@@ -42,6 +42,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="5dp"
+                    android:maxLines="2"
+                    android:lines="2"
                     android:text="order_nowsdasdasdasdsadasdsadasdasdasdsa"
                     android:textColor="@color/Color_App1"
                     android:textSize="15sp"

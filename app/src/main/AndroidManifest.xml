@@ -14,7 +14,9 @@
         android:theme="@style/Theme.Furniture_Gallery"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".Activites.DiscountSavesActivity"
+        <activity android:name=".Activites.FurnitureNearByActivity"></activity>
+        <activity
+            android:name=".Activites.DiscountSavesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Furniture_Gallery.NoActionBar" />
         <activity
