@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,16 @@ public class SavingsOffersActivity extends AppCompatActivity implements View.OnC
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+
+        savesOfferBinding.SwipeRefreshLayoutCategoryList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+                savesOfferBinding.SwipeRefreshLayoutCategoryList.setRefreshing(false);
+
+            }
+        });
 
         savesOfferBinding.progressBarCyclicSavesOffer.setVisibility(View.VISIBLE);
 

@@ -13,12 +13,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.furniture_gallery.Adapters.CategoryHomeAdapter;
+import com.example.furniture_gallery.Adapters.DiscountHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesDiscountHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.CategoryHomeResponseModel;
+import com.example.furniture_gallery.Model.UserResponseModel.DiscountHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.OfferHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.SavesDiscountHomeResponseModel;
@@ -32,15 +34,17 @@ import java.util.List;
 public class HomeMainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityHomeMainBinding homeMainBinding;
-    RecyclerView RecyclerViewHome;
     HomeViewModel homeViewModel;
     List<CategoryHomeResponseModel> categoryHomeResponseModels = new ArrayList<>();
     List<OfferHomeResponseModel> offerHomeResponseModels = new ArrayList<>();
     List<SavesDiscountHomeResponseModel> savesDiscountHomeResponseModels = new ArrayList<>();
+    List<DiscountHomeResponseModel> DiscountHomeResponseModels = new ArrayList<>();
     CategoryHomeAdapter categoryHomeAdapter;
     SavesOfferHomeAdapter savesOfferHomeAdapter;
     SavesDiscountHomeAdapter savesDiscountHomeAdapter;
+    DiscountHomeAdapter DiscountHomeAdapter;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +57,12 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         homeMainBinding.tvMoreWatchCategory.setOnClickListener(this);
         homeMainBinding.tvMoreWatchSavesDiscount.setOnClickListener(this);
         homeMainBinding.tvMoreWatchDiscountSaves.setOnClickListener(this);
+        homeMainBinding.tvMoreWatchDiscount.setOnClickListener(this);
 
        GetCategoryItem();
        GetSavesOfferItem();
        GetDiscountSavesItem();
+       GetDiscountItem();
 
     }
 
@@ -165,6 +171,38 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    private void GetDiscountItem() {
+
+        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+
+        homeMainBinding.progressBarCyclicDiscount.setVisibility(View.VISIBLE);
+
+        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+            @Override
+            public void onChanged(HomeModel homeModel) {
+                if(homeModel.getStatus()){
+                    HomeResponseModel homeResponseModel = homeModel.getData();
+                    DiscountHomeResponseModels = homeResponseModel.getDiscounts();
+                    if (DiscountHomeResponseModels.size() > 0){
+                        homeMainBinding.progressBarCyclicDiscount.setVisibility(View.GONE);
+                        DiscountHomeAdapter = new DiscountHomeAdapter(HomeMainActivity.this,DiscountHomeResponseModels);
+                        homeMainBinding.recyclerViewDiscount.setLayoutManager(new LinearLayoutManager(HomeMainActivity.this, RecyclerView.HORIZONTAL,false));
+                        homeMainBinding.recyclerViewDiscount.setHasFixedSize(true);
+                        homeMainBinding.recyclerViewDiscount.setAdapter(DiscountHomeAdapter);
+
+                    }else {
+                        homeMainBinding.progressBarCyclicDiscount.setVisibility(View.GONE);
+                        homeMainBinding.tvNoDataDiscount.setVisibility(View.VISIBLE);
+
+                    }
+                }else {
+                    homeMainBinding.progressBarCyclicDiscount.setVisibility(View.GONE);
+                    Toast.makeText(HomeMainActivity.this, "no data with server", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -177,6 +215,9 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
                 break;
                 case R.id.tv_moreWatchDiscountSaves:
                 startActivity(new Intent(HomeMainActivity.this,DiscountSavesActivity.class));
+                break;
+                case R.id.tv_moreWatchDiscount:
+                startActivity(new Intent(HomeMainActivity.this,DiscountActivity.class));
                 break;
         }
     }
