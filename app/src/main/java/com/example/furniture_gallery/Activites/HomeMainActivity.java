@@ -13,11 +13,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.furniture_gallery.Adapters.CategoryHomeAdapter;
+import com.example.furniture_gallery.Adapters.SavesDiscountHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.CategoryHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.OfferHomeResponseModel;
+import com.example.furniture_gallery.Model.UserResponseModel.SavesDiscountHomeResponseModel;
 import com.example.furniture_gallery.R;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.example.furniture_gallery.databinding.ActivityHomeMainBinding;
@@ -32,8 +34,10 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
     HomeViewModel homeViewModel;
     List<CategoryHomeResponseModel> categoryHomeResponseModels = new ArrayList<>();
     List<OfferHomeResponseModel> offerHomeResponseModels = new ArrayList<>();
+    List<SavesDiscountHomeResponseModel> savesDiscountHomeResponseModels = new ArrayList<>();
     CategoryHomeAdapter categoryHomeAdapter;
     SavesOfferHomeAdapter savesOfferHomeAdapter;
+    SavesDiscountHomeAdapter savesDiscountHomeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +48,11 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeMainBinding.tvMoreWatchCategory.setOnClickListener(this);
         homeMainBinding.tvMoreWatchSavesDiscount.setOnClickListener(this);
+        homeMainBinding.tvMoreWatchDiscountSaves.setOnClickListener(this);
 
        GetCategoryItem();
        GetSavesOfferItem();
+       GetDiscountSavesItem();
 
     }
 
@@ -90,6 +96,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
+
     private void GetSavesOfferItem() {
 
         homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
@@ -122,6 +129,39 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    private void GetDiscountSavesItem() {
+
+        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
+
+        homeMainBinding.progressBarCyclicDiscountOffer.setVisibility(View.VISIBLE);
+
+        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+            @Override
+            public void onChanged(HomeModel homeModel) {
+                if(homeModel.getStatus()){
+                    HomeResponseModel homeResponseModel = homeModel.getData();
+                    savesDiscountHomeResponseModels = homeResponseModel.getSaves();
+                    if (savesDiscountHomeResponseModels.size() > 0){
+                        homeMainBinding.progressBarCyclicDiscountOffer.setVisibility(View.GONE);
+                        savesDiscountHomeAdapter = new SavesDiscountHomeAdapter(HomeMainActivity.this,savesDiscountHomeResponseModels);
+                        homeMainBinding.recyclerViewDiscountOffer.setLayoutManager(new LinearLayoutManager(HomeMainActivity.this, RecyclerView.HORIZONTAL,false));
+                        homeMainBinding.recyclerViewDiscountOffer.setHasFixedSize(true);
+                        homeMainBinding.recyclerViewDiscountOffer.setAdapter(savesDiscountHomeAdapter);
+
+                    }else {
+                        homeMainBinding.progressBarCyclicDiscountOffer.setVisibility(View.GONE);
+                        homeMainBinding.tvNoDataDiscountOffer.setVisibility(View.VISIBLE);
+
+                    }
+                }else {
+                    homeMainBinding.progressBarCyclicDiscountOffer.setVisibility(View.GONE);
+                    Toast.makeText(HomeMainActivity.this, "no data with server", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -130,6 +170,9 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.tv_moreWatchSavesDiscount:
                 startActivity(new Intent(HomeMainActivity.this,SavingsOffersActivity.class));
+                break;
+                case R.id.tv_moreWatchDiscountSaves:
+                startActivity(new Intent(HomeMainActivity.this,DiscountSavesActivity.class));
                 break;
         }
     }

@@ -20,7 +20,7 @@ public class SavesDiscountHomeResponseModel {
     private Integer price;
     @SerializedName("video")
     @Expose
-    private Object video;
+    private String video;
     @SerializedName("start")
     @Expose
     private String start;
@@ -102,11 +102,11 @@ public class SavesDiscountHomeResponseModel {
         this.price = price;
     }
 
-    public Object getVideo() {
+    public String getVideo() {
         return video;
     }
 
-    public void setVideo(Object video) {
+    public void setVideo(String video) {
         this.video = video;
     }
 

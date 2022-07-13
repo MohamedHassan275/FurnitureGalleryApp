@@ -110,33 +110,6 @@ public class SavesOfferHomeAdapter extends RecyclerView.Adapter<SavesOfferHomeAd
         }
     });
 
-//        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w");
-//        holder.progressBar_cyclic_SavesOffer.setVisibility(View.VISIBLE);
-//        homeViewModel.modelMutableLiveData.observe((LifecycleOwner) context, new Observer<HomeModel>() {
-//            @Override
-//            public void onChanged(HomeModel homeModel) {
-//
-//                if(homeModel.getStatus()){
-//                    productOfferHomeResponesModels = categoryHomeResponseModel.getProducts();
-//                    if (productOfferHomeResponesModels.size() > 0){
-//                        holder.progressBar_cyclic_SavesOffer.setVisibility(View.GONE);
-//                        productSavesOfferHomeAdapter = new ProductSavesOfferHomeAdapter(productOfferHomeResponesModels);
-//                        holder.recyclerView_SavesOffer.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL,false));
-//                        holder.recyclerView_SavesOffer.setHasFixedSize(true);
-//                        holder.recyclerView_SavesOffer.setAdapter(productSavesOfferHomeAdapter);
-//
-//                    }else {
-//                        holder.progressBar_cyclic_SavesOffer.setVisibility(View.GONE);
-//                        holder.tv_noDataSavesOffer.setVisibility(View.VISIBLE);
-//
-//                    }
-//                }else {
-//                    holder.progressBar_cyclic_SavesOffer.setVisibility(View.GONE);
-//                    Toast.makeText(context, "no data with server", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//        });
 
     }
 

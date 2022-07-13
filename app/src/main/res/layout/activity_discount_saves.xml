@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activites.SavingsOffersActivity">
+    tools:context=".Activites.DiscountSavesActivity">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -20,13 +20,13 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_gravity="center"
-            android:text="@string/offer_discount"
+            android:text="@string/saves_offer"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageBackSavesOffer"
+            android:id="@+id/imageBackDiscountSaves"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -44,7 +44,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_noDataCategory"
+            android:id="@+id/tv_noDataDiscountSaves"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -55,7 +55,7 @@
             android:textStyle="normal" />
 
         <ProgressBar
-            android:id="@+id/progressBar_cyclic_SavesOffer"
+            android:id="@+id/progressBar_cyclic_DiscountSaves"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -66,12 +66,12 @@
             android:visibility="gone" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/SwipeRefreshLayoutCategoryList"
+            android:id="@+id/SwipeRefreshLayoutDiscountSaves"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_CategoryList"
+                android:id="@+id/recyclerView_DiscountSaves"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
