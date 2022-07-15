@@ -18,6 +18,7 @@ import com.example.furniture_gallery.Adapters.FurnitureNearByHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesDiscountHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelper;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.BranchTypeHomeResponseModel;
@@ -47,22 +48,30 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
     SavesDiscountHomeAdapter savesDiscountHomeAdapter;
     DiscountHomeAdapter DiscountHomeAdapter;
     FurnitureNearByHomeAdapter furnitureNearByHomeAdapter;
+    PreferenceHelper preferenceHelper;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceHelper = PreferenceHelper.getInstans(this);
         preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(this);
         Language.changeLanguage(this, preferenceHelperChoseLanguage.getLang());
         homeMainBinding = ActivityHomeMainBinding.inflate(getLayoutInflater());
         setContentView(homeMainBinding.getRoot());
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel.getDetailsHome(preferenceHelper.getAccessToken(), preferenceHelperChoseLanguage.getLang());
+
         homeMainBinding.tvMoreWatchCategory.setOnClickListener(this);
         homeMainBinding.tvMoreWatchSavesDiscount.setOnClickListener(this);
         homeMainBinding.tvMoreWatchDiscountSaves.setOnClickListener(this);
         homeMainBinding.tvMoreWatchDiscount.setOnClickListener(this);
         homeMainBinding.tvMoreWatchFurnitureNearBy.setOnClickListener(this);
+
+        Toast.makeText(this, preferenceHelper.getAccessToken(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, preferenceHelperChoseLanguage.getLang(), Toast.LENGTH_SHORT).show();
+
 
         GetCategoryItem();
         GetSavesOfferItem();
@@ -73,7 +82,6 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void GetCategoryItem() {
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w", preferenceHelperChoseLanguage.getLang());
 
         homeMainBinding.SwipeRefreshLayoutCategoryList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -115,7 +123,6 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
     private void GetSavesOfferItem() {
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w", preferenceHelperChoseLanguage.getLang());
 
         homeMainBinding.progressBarCyclicSavesOffer.setVisibility(View.VISIBLE);
 
@@ -147,8 +154,6 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
     private void GetDiscountSavesItem() {
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w", preferenceHelperChoseLanguage.getLang());
-
         homeMainBinding.progressBarCyclicDiscountOffer.setVisibility(View.VISIBLE);
 
         homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
@@ -179,8 +184,6 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
     private void GetDiscountItem() {
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w", preferenceHelperChoseLanguage.getLang());
-
         homeMainBinding.progressBarCyclicDiscount.setVisibility(View.VISIBLE);
 
         homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
@@ -210,8 +213,6 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void GetFurnitureNearByItem() {
-
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w", preferenceHelperChoseLanguage.getLang());
 
         homeMainBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.VISIBLE);
 
