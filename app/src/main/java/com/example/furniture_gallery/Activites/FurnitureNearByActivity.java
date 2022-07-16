@@ -3,7 +3,6 @@ package com.example.furniture_gallery.Activites;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -13,12 +12,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.furniture_gallery.Adapters.FurnitureNearByHomeAdapter;
 import com.example.furniture_gallery.Adapters.FurnitureNearByScreenAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.FurnitureNearByModel;
 import com.example.furniture_gallery.Model.UserResponseModel.FurnitureNearByResponseModel;
+import com.example.furniture_gallery.ViewModel.FurnitureViewModel;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.example.furniture_gallery.databinding.ActivityFurnitureNearByBinding;
 
@@ -28,7 +27,7 @@ import java.util.List;
 public class FurnitureNearByActivity extends AppCompatActivity {
 
     ActivityFurnitureNearByBinding furnitureNearByBinding;
-    HomeViewModel homeViewModel;
+    FurnitureViewModel furnitureViewModel;
     List<FurnitureNearByResponseModel> furnitureNearByResponseModels = new ArrayList<>();
     FurnitureNearByScreenAdapter furnitureNearByScreenAdapter;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
@@ -41,9 +40,9 @@ public class FurnitureNearByActivity extends AppCompatActivity {
         furnitureNearByBinding = ActivityFurnitureNearByBinding.inflate(getLayoutInflater());
         setContentView(furnitureNearByBinding.getRoot());
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        furnitureViewModel = new ViewModelProvider(this).get(FurnitureViewModel.class);
 
-        homeViewModel.getFurnitureNearBy(25.2121212,24.1252152);
+        furnitureViewModel.getFurnitureNearBy(25.2121212,24.1252152);
 
         furnitureNearByBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.VISIBLE);
 
@@ -51,12 +50,12 @@ public class FurnitureNearByActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
-                homeViewModel.getFurnitureNearBy(25.2121212,24.1252152);
+                furnitureViewModel.getFurnitureNearBy(25.2121212,24.1252152);
                 furnitureNearByBinding.SwipeRefreshLayoutFurnitureNearBy.setRefreshing(false);
 
             }
         });
-        homeViewModel.furnitureNearByModelMutableLiveData.observe(this, new Observer<FurnitureNearByModel>() {
+        furnitureViewModel.furnitureNearByModelMutableLiveData.observe(this, new Observer<FurnitureNearByModel>() {
             @Override
             public void onChanged(FurnitureNearByModel furnitureNearByModel) {
                 if (furnitureNearByModel.getStatus()) {

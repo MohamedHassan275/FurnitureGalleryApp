@@ -15,7 +15,6 @@ import retrofit2.Response;
 public class HomeViewModel extends ViewModel {
 
    public MutableLiveData<HomeModel> homeModelMutableLiveData = new MutableLiveData<>();
-   public MutableLiveData<FurnitureNearByModel> furnitureNearByModelMutableLiveData = new MutableLiveData<>();
    public MutableLiveData<LogoutModel> logoutModelMutableLiveData = new MutableLiveData<>();
 
     public void getDetailsHome(String AccessToken,String Language){
@@ -33,20 +32,6 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
-    public void getFurnitureNearBy(double lat,double lng){
-        Call<FurnitureNearByModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetFurnitureNearby(lat,lng);
-        call.enqueue(new Callback<FurnitureNearByModel>() {
-            @Override
-            public void onResponse(Call<FurnitureNearByModel> call, Response<FurnitureNearByModel> response) {
-                furnitureNearByModelMutableLiveData.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<FurnitureNearByModel> call, Throwable t) {
-
-            }
-        });
-    }
 
     public void logoutApp(String AccessToken){
         Call<LogoutModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().LogoutApp(AccessToken);

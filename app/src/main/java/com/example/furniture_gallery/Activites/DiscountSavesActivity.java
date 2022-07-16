@@ -16,10 +16,12 @@ import com.example.furniture_gallery.Adapters.SavesDiscountHomeAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
+import com.example.furniture_gallery.Model.UserModel.SaveOfferModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.SavesDiscountHomeResponseModel;
 import com.example.furniture_gallery.R;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
+import com.example.furniture_gallery.ViewModel.SaveOfferViewModel;
 import com.example.furniture_gallery.databinding.ActivityDiscountSavesBinding;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ import java.util.List;
 public class DiscountSavesActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityDiscountSavesBinding discountSavesBinding;
-    HomeViewModel homeViewModel;
+    SaveOfferViewModel saveOfferViewModel;
     List<SavesDiscountHomeResponseModel> savesDiscountHomeResponseModels = new ArrayList<>();
     SavesDiscountHomeAdapter savesDiscountHomeAdapter;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
@@ -41,15 +43,15 @@ public class DiscountSavesActivity extends AppCompatActivity implements View.OnC
         setContentView(discountSavesBinding.getRoot());
 
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        saveOfferViewModel = new ViewModelProvider(this).get(SaveOfferViewModel.class);
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+        saveOfferViewModel.GetOffer("DESC");
 
         discountSavesBinding.SwipeRefreshLayoutDiscountSaves.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+                saveOfferViewModel.GetOffer("DESC");
                 discountSavesBinding.SwipeRefreshLayoutDiscountSaves.setRefreshing(false);
 
             }
@@ -57,12 +59,11 @@ public class DiscountSavesActivity extends AppCompatActivity implements View.OnC
 
         discountSavesBinding.progressBarCyclicDiscountSaves.setVisibility(View.VISIBLE);
 
-        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        saveOfferViewModel.saveOfferModelMutableLiveData.observe(this, new Observer<SaveOfferModel>() {
             @Override
-            public void onChanged(HomeModel homeModel) {
-                if(homeModel.getStatus()){
-                    HomeResponseModel homeResponseModel = homeModel.getData();
-                    savesDiscountHomeResponseModels = homeResponseModel.getSaves();
+            public void onChanged(SaveOfferModel saveOfferModel) {
+                if(saveOfferModel.getStatus()){
+                    savesDiscountHomeResponseModels = saveOfferModel.getSaves();
                     if (savesDiscountHomeResponseModels.size() > 0){
                         discountSavesBinding.progressBarCyclicDiscountSaves.setVisibility(View.GONE);
                         savesDiscountHomeAdapter = new SavesDiscountHomeAdapter(DiscountSavesActivity.this,savesDiscountHomeResponseModels);

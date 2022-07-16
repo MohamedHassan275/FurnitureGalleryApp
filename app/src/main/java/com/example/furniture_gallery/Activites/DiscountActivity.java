@@ -15,9 +15,11 @@ import android.widget.Toast;
 import com.example.furniture_gallery.Adapters.DiscountHomeAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
+import com.example.furniture_gallery.Model.UserModel.DiscountsModel;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.DiscountHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
+import com.example.furniture_gallery.ViewModel.DiscountsViewModel;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.example.furniture_gallery.databinding.ActivityDiscountBinding;
 
@@ -27,7 +29,7 @@ import java.util.List;
 public class DiscountActivity extends AppCompatActivity {
 
     ActivityDiscountBinding discountBinding;
-    HomeViewModel homeViewModel;
+    DiscountsViewModel discountsViewModel;
     List<DiscountHomeResponseModel> DiscountHomeResponseModels = new ArrayList<>();
     DiscountHomeAdapter DiscountHomeAdapter;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
@@ -40,14 +42,14 @@ public class DiscountActivity extends AppCompatActivity {
         discountBinding = ActivityDiscountBinding.inflate(getLayoutInflater());
         setContentView(discountBinding.getRoot());
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+        discountsViewModel = new ViewModelProvider(this).get(DiscountsViewModel.class);
+        discountsViewModel.GetOffer("DESC");
 
         discountBinding.SwipeRefreshLayoutDiscount.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+                discountsViewModel.GetOffer("DESC");
                 discountBinding.SwipeRefreshLayoutDiscount.setRefreshing(false);
 
             }
@@ -55,12 +57,11 @@ public class DiscountActivity extends AppCompatActivity {
 
         discountBinding.progressBarCyclicDiscount.setVisibility(View.VISIBLE);
 
-        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        discountsViewModel.discountsModelMutableLiveData.observe(this, new Observer<DiscountsModel>() {
             @Override
-            public void onChanged(HomeModel homeModel) {
-                if(homeModel.getStatus()){
-                    HomeResponseModel homeResponseModel = homeModel.getData();
-                    DiscountHomeResponseModels = homeResponseModel.getDiscounts();
+            public void onChanged(DiscountsModel discountsModel) {
+                if(discountsModel.getStatus()){
+                    DiscountHomeResponseModels = discountsModel.getDiscounts();
                     if (DiscountHomeResponseModels.size() > 0){
                         discountBinding.progressBarCyclicDiscount.setVisibility(View.GONE);
                         DiscountHomeAdapter = new DiscountHomeAdapter(DiscountActivity.this,DiscountHomeResponseModels);

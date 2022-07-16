@@ -14,10 +14,12 @@ import android.widget.Toast;
 import com.example.furniture_gallery.Adapters.CategoryHomeAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
+import com.example.furniture_gallery.Model.UserModel.CategoryModel;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.CategoryHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.R;
+import com.example.furniture_gallery.ViewModel.CategoriesViewModel;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.example.furniture_gallery.databinding.ActivityCategoryListBinding;
 
@@ -27,7 +29,7 @@ import java.util.List;
 public class CategoryListActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityCategoryListBinding categoryListBinding;
-    HomeViewModel homeViewModel;
+    CategoriesViewModel categoriesViewModel;
     CategoryHomeAdapter categoryHomeAdapter;
     List<CategoryHomeResponseModel>categoryHomeResponseModels = new ArrayList<>();
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
@@ -40,27 +42,26 @@ public class CategoryListActivity extends AppCompatActivity implements View.OnCl
         categoryListBinding = ActivityCategoryListBinding.inflate(getLayoutInflater());
         setContentView(categoryListBinding.getRoot());
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+        categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
+        categoriesViewModel.GetCategories();
 
         categoryListBinding.SwipeRefreshLayoutCategoryList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+                categoriesViewModel.GetCategories();
                 categoryListBinding.SwipeRefreshLayoutCategoryList.setRefreshing(false);
 
             }
         });
 
         categoryListBinding.progressBarCyclicCategoryList.setVisibility(View.VISIBLE);
-        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        categoriesViewModel.categoryModelMutableLiveData.observe(this, new Observer<CategoryModel>() {
             @Override
-            public void onChanged(HomeModel homeModel) {
-                if(homeModel.getStatus()){
+            public void onChanged(CategoryModel categoryModel) {
+                if(categoryModel.getStatus()){
                     categoryListBinding.progressBarCyclicCategoryList.setVisibility(View.GONE);
-                    HomeResponseModel homeResponseModel = homeModel.getData();
-                    categoryHomeResponseModels = homeResponseModel.getCategories();
+                    categoryHomeResponseModels = categoryModel.getCategories();
                     if (categoryHomeResponseModels.size() > 0){
                         categoryListBinding.progressBarCyclicCategoryList.setVisibility(View.GONE);
                         categoryHomeAdapter = new CategoryHomeAdapter(categoryHomeResponseModels);

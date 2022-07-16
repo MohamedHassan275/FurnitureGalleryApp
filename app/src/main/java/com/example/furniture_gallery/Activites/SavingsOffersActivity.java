@@ -15,11 +15,12 @@ import android.widget.Toast;
 import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
-import com.example.furniture_gallery.Model.UserModel.HomeModel;
-import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
+import com.example.furniture_gallery.Model.UserModel.OfferModel;
+import com.example.furniture_gallery.Model.UserModel.SaveOfferModel;
 import com.example.furniture_gallery.Model.UserResponseModel.OfferHomeResponseModel;
 import com.example.furniture_gallery.R;
-import com.example.furniture_gallery.ViewModel.HomeViewModel;
+import com.example.furniture_gallery.ViewModel.OfferViewModel;
+import com.example.furniture_gallery.ViewModel.SaveOfferViewModel;
 import com.example.furniture_gallery.databinding.ActivitySavingsOffersBinding;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import java.util.List;
 public class SavingsOffersActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivitySavingsOffersBinding savesOfferBinding;
-    HomeViewModel homeViewModel;
+    OfferViewModel offerViewModel;
     List<OfferHomeResponseModel> offerHomeResponseModels = new ArrayList<>();
     SavesOfferHomeAdapter savesOfferHomeAdapter;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
@@ -41,15 +42,15 @@ public class SavingsOffersActivity extends AppCompatActivity implements View.OnC
         savesOfferBinding = ActivitySavingsOffersBinding.inflate(getLayoutInflater());
         setContentView(savesOfferBinding.getRoot());
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        offerViewModel = new ViewModelProvider(this).get(OfferViewModel.class);
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+        offerViewModel.GetOffer("DESC");
 
         savesOfferBinding.SwipeRefreshLayoutCategoryList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w",preferenceHelperChoseLanguage.getLang());
+                offerViewModel.GetOffer("DESC");
                 savesOfferBinding.SwipeRefreshLayoutCategoryList.setRefreshing(false);
 
             }
@@ -57,12 +58,11 @@ public class SavingsOffersActivity extends AppCompatActivity implements View.OnC
 
         savesOfferBinding.progressBarCyclicSavesOffer.setVisibility(View.VISIBLE);
 
-        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        offerViewModel.offerModelMutableLiveData.observe(this, new Observer<OfferModel>() {
             @Override
-            public void onChanged(HomeModel homeModel) {
-                if(homeModel.getStatus()){
-                    HomeResponseModel homeResponseModel = homeModel.getData();
-                    offerHomeResponseModels = homeResponseModel.getOffers();
+            public void onChanged(OfferModel offerModel) {
+                if(offerModel.getStatus()){
+                    offerHomeResponseModels = offerModel.getOffers();
                     if (offerHomeResponseModels.size() > 0){
                         savesOfferBinding.progressBarCyclicSavesOffer.setVisibility(View.GONE);
                         savesOfferHomeAdapter = new SavesOfferHomeAdapter(SavingsOffersActivity.this,offerHomeResponseModels);

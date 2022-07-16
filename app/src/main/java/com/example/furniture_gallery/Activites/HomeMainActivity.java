@@ -31,6 +31,7 @@ import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.OfferHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.SavesDiscountHomeResponseModel;
 import com.example.furniture_gallery.R;
+import com.example.furniture_gallery.ViewModel.FurnitureViewModel;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.example.furniture_gallery.databinding.ActivityHomeMainBinding;
 
@@ -41,6 +42,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
     ActivityHomeMainBinding homeMainBinding;
     HomeViewModel homeViewModel;
+    FurnitureViewModel furnitureViewModel;
     List<CategoryHomeResponseModel> categoryHomeResponseModels = new ArrayList<>();
     List<OfferHomeResponseModel> offerHomeResponseModels = new ArrayList<>();
     List<SavesDiscountHomeResponseModel> savesDiscountHomeResponseModels = new ArrayList<>();
@@ -220,9 +222,10 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
         homeMainBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.VISIBLE);
 
-        homeViewModel.getFurnitureNearBy(25.2121212,24.1252152);
+        furnitureViewModel  = new ViewModelProvider(HomeMainActivity.this).get(FurnitureViewModel.class);
+        furnitureViewModel.getFurnitureNearBy(25.2121212,24.1252152);
 
-        homeViewModel.furnitureNearByModelMutableLiveData.observe(this, new Observer<FurnitureNearByModel>() {
+        furnitureViewModel.furnitureNearByModelMutableLiveData.observe(this, new Observer<FurnitureNearByModel>() {
             @Override
             public void onChanged(FurnitureNearByModel furnitureNearByModel) {
                 if (furnitureNearByModel.getStatus()) {
