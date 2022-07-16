@@ -23,10 +23,10 @@
         <item name="colorAccent">@color/Color_App6</item> <!-- Whatever color you want-->
     </style>
 
-<!--    <style name="myRatingbar" parent="@android:style/Widget.RatingBar">-->
-<!--        <item name="android:progressDrawable">@drawable/my_ratingbar</item>-->
-<!--        <item name="android:minHeight">15dip</item>-->
-<!--        <item name="android:maxHeight">19dip</item>-->
-<!--    </style>-->
+    <style name="RatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_full</item>
+        <item name="android:minHeight">19dip</item>
+        <item name="android:maxHeight">19dip</item>
+    </style>
 
 </resources>

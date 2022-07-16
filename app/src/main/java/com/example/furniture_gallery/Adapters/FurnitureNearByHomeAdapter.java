@@ -11,17 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.furniture_gallery.Model.UserResponseModel.BranchTypeHomeResponseModel;
+import com.example.furniture_gallery.Model.UserResponseModel.FurnitureNearByResponseModel;
 import com.example.furniture_gallery.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class FurnitureNearByHomeAdapter extends RecyclerView.Adapter<FurnitureNearByHomeAdapter.ViewHolder> {
 
-    List<BranchTypeHomeResponseModel> branchTypeHomeResponseModels;
+    List<FurnitureNearByResponseModel> branchTypeHomeResponseModels;
     private static SetOnBranchTypeHomeItemClickListener mclickListener;
 
-    public FurnitureNearByHomeAdapter(List<BranchTypeHomeResponseModel> categoryHomeResponseModelList) {
+    public FurnitureNearByHomeAdapter(List<FurnitureNearByResponseModel> categoryHomeResponseModelList) {
         this.branchTypeHomeResponseModels = categoryHomeResponseModelList;
     }
 
@@ -43,10 +46,10 @@ public class FurnitureNearByHomeAdapter extends RecyclerView.Adapter<FurnitureNe
     @Override
     public void onBindViewHolder(@NonNull FurnitureNearByHomeAdapter.ViewHolder holder, int position) {
 
-        BranchTypeHomeResponseModel categoryHomeResponseModel = branchTypeHomeResponseModels.get(position);
+        FurnitureNearByResponseModel categoryHomeResponseModel = branchTypeHomeResponseModels.get(position);
 
-        Picasso.get().load(categoryHomeResponseModel.getImage()).into(holder.ImageViewSliderNearBy);
-        holder.tv_NameFurnitureNearBy.setText(String.valueOf(categoryHomeResponseModel.getName()));
+        Picasso.get().load(categoryHomeResponseModel.getLogo()).into(holder.ImageViewFurnitureNearBy);
+        holder.tv_NameFurnitureNearBy.setText(categoryHomeResponseModel.getName());
 
     }
 
@@ -54,14 +57,14 @@ public class FurnitureNearByHomeAdapter extends RecyclerView.Adapter<FurnitureNe
 
         RelativeLayout RelativeLayoutFurnitureNearBy;
         TextView tv_NameFurnitureNearBy;
-        ImageView ImageViewSliderNearBy;
+        CircleImageView ImageViewFurnitureNearBy;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             RelativeLayoutFurnitureNearBy = itemView.findViewById(R.id.RelativeLayoutFurnitureNearBy);
             tv_NameFurnitureNearBy = itemView.findViewById(R.id.tv_NameFurnitureNearBy);
-            ImageViewSliderNearBy = itemView.findViewById(R.id.ImageViewSliderNearBy);
+            ImageViewFurnitureNearBy = itemView.findViewById(R.id.ImageViewFurnitureNearBy);
 
             RelativeLayoutFurnitureNearBy.setOnClickListener(new View.OnClickListener() {
                 @Override

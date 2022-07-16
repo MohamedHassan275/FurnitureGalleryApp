@@ -28,4 +28,7 @@
     <string name="no_data">لا يوجد بيانات</string>
     <string name="order_now">اطلب الان</string>
     <string name="price_offer">سعر العرض : </string>
+    <string name="check_location">الموقع غير مفعل</string>
+    <string name="open_location"> فتح إعدادات الموقع</string>
+    <string name="cancel"> الغاء</string>
 </resources>

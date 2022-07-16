@@ -27,4 +27,7 @@
     <string name="no_data">There are no data</string>
     <string name="order_now">order now</string>
     <string name="price_offer">offer price :</string>
+    <string name="check_location">location not enabled</string>
+    <string name="open_location"> open location settings</string>
+    <string name="cancel"> cancel</string>
 </resources>

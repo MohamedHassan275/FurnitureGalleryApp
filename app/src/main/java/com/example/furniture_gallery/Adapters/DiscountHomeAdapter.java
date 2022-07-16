@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -77,8 +78,8 @@ public class DiscountHomeAdapter extends RecyclerView.Adapter<DiscountHomeAdapte
 
         LinearLayout LinearLayoutDiscount,tv_orderNowDiscount;
         TextView tv_NameFurnitureDiscount,tv_nameDiscount,tv_DetailsDiscount,tv_PersentPriceDiscount,tv_PriceAfterDiscount,tv_BeforePriceDiscount;
-        ImageView ImageFurnitureDiscount,ImageViewSliderDiscount;
-
+        ImageView ImageViewSliderDiscount;
+        CircleImageView ImageFurnitureDiscount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

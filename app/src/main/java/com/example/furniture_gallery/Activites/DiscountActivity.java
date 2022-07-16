@@ -18,7 +18,6 @@ import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseL
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
 import com.example.furniture_gallery.Model.UserResponseModel.DiscountHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
-import com.example.furniture_gallery.R;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.example.furniture_gallery.databinding.ActivityDiscountBinding;
 
@@ -56,7 +55,7 @@ public class DiscountActivity extends AppCompatActivity {
 
         discountBinding.progressBarCyclicDiscount.setVisibility(View.VISIBLE);
 
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if(homeModel.getStatus()){

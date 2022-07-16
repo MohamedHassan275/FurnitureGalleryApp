@@ -10,17 +10,18 @@
         android:layout_width="150dp"
         android:layout_height="150dp">
 
-        <ImageView
-            android:id="@+id/ImageViewSliderNearBy"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ImageViewFurnitureNearBy"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:scaleType="fitCenter"
-            android:layout_marginTop="10dp"
-            android:layout_width="75dp"
             android:layout_centerHorizontal="true"
-            android:layout_height="75dp"
-            android:layout_gravity="center"
-            android:src="@drawable/group" />
+            android:src="@drawable/group"
+            app:civ_border_width="0dp" />
+
 
     <RelativeLayout
         android:layout_width="150dp"

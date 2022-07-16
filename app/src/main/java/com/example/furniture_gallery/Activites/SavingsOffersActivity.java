@@ -3,7 +3,6 @@ package com.example.furniture_gallery.Activites;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -13,7 +12,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.furniture_gallery.Adapters.CategoryHomeAdapter;
 import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
@@ -59,7 +57,7 @@ public class SavingsOffersActivity extends AppCompatActivity implements View.OnC
 
         savesOfferBinding.progressBarCyclicSavesOffer.setVisibility(View.VISIBLE);
 
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if(homeModel.getStatus()){

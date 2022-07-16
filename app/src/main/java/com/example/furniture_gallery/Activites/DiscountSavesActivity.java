@@ -21,7 +21,6 @@ import com.example.furniture_gallery.Model.UserResponseModel.SavesDiscountHomeRe
 import com.example.furniture_gallery.R;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.example.furniture_gallery.databinding.ActivityDiscountSavesBinding;
-import com.example.furniture_gallery.databinding.DiscountSavesListViewBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +57,7 @@ public class DiscountSavesActivity extends AppCompatActivity implements View.OnC
 
         discountSavesBinding.progressBarCyclicDiscountSaves.setVisibility(View.VISIBLE);
 
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if(homeModel.getStatus()){

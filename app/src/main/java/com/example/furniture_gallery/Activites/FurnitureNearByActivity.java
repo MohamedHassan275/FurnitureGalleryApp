@@ -13,17 +13,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.furniture_gallery.Adapters.CategoryHomeAdapter;
-import com.example.furniture_gallery.Adapters.DiscountHomeAdapter;
 import com.example.furniture_gallery.Adapters.FurnitureNearByHomeAdapter;
-import com.example.furniture_gallery.Adapters.SavesDiscountHomeAdapter;
-import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
+import com.example.furniture_gallery.Adapters.FurnitureNearByScreenAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
-import com.example.furniture_gallery.Model.UserModel.HomeModel;
-import com.example.furniture_gallery.Model.UserResponseModel.BranchTypeHomeResponseModel;
-import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
-import com.example.furniture_gallery.R;
+import com.example.furniture_gallery.Model.UserModel.FurnitureNearByModel;
+import com.example.furniture_gallery.Model.UserResponseModel.FurnitureNearByResponseModel;
 import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.example.furniture_gallery.databinding.ActivityFurnitureNearByBinding;
 
@@ -34,8 +29,8 @@ public class FurnitureNearByActivity extends AppCompatActivity {
 
     ActivityFurnitureNearByBinding furnitureNearByBinding;
     HomeViewModel homeViewModel;
-    List<BranchTypeHomeResponseModel> branchTypeHomeResponseModelArrayList = new ArrayList<>();
-    FurnitureNearByHomeAdapter furnitureNearByHomeAdapter;
+    List<FurnitureNearByResponseModel> furnitureNearByResponseModels = new ArrayList<>();
+    FurnitureNearByScreenAdapter furnitureNearByScreenAdapter;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
 
     @Override
@@ -48,7 +43,7 @@ public class FurnitureNearByActivity extends AppCompatActivity {
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w", preferenceHelperChoseLanguage.getLang());
+        homeViewModel.getFurnitureNearBy(25.2121212,24.1252152);
 
         furnitureNearByBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.VISIBLE);
 
@@ -56,23 +51,23 @@ public class FurnitureNearByActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
-                homeViewModel.getDetailsHome("Bearer 159|Chs7WOMBStS7Dsod5P4ULMrrTKQEkjfuTt5Sbv9w", preferenceHelperChoseLanguage.getLang());
+                homeViewModel.getFurnitureNearBy(25.2121212,24.1252152);
                 furnitureNearByBinding.SwipeRefreshLayoutFurnitureNearBy.setRefreshing(false);
 
             }
         });
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.furnitureNearByModelMutableLiveData.observe(this, new Observer<FurnitureNearByModel>() {
             @Override
-            public void onChanged(HomeModel homeModel) {
-                if (homeModel.getStatus()) {
-                    HomeResponseModel homeResponseModel = homeModel.getData();
-                    branchTypeHomeResponseModelArrayList = homeResponseModel.getBranchType();
-                    if (branchTypeHomeResponseModelArrayList.size() > 0) {
+            public void onChanged(FurnitureNearByModel furnitureNearByModel) {
+                if (furnitureNearByModel.getStatus()) {
+                    furnitureNearByResponseModels = furnitureNearByModel.getFurnitureNearByResponseModels();
+                    if (furnitureNearByResponseModels.size() > 0) {
                         furnitureNearByBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.GONE);
-                        furnitureNearByHomeAdapter = new FurnitureNearByHomeAdapter( branchTypeHomeResponseModelArrayList);
-                        furnitureNearByBinding.recyclerViewFurnitureNearBy.setLayoutManager(new GridLayoutManager(FurnitureNearByActivity.this,2));
+                        furnitureNearByScreenAdapter = new FurnitureNearByScreenAdapter(furnitureNearByResponseModels);
+                        furnitureNearByBinding.recyclerViewFurnitureNearBy.setLayoutManager(new LinearLayoutManager(FurnitureNearByActivity.this,
+                                RecyclerView.VERTICAL,false));
                         furnitureNearByBinding.recyclerViewFurnitureNearBy.setHasFixedSize(true);
-                        furnitureNearByBinding.recyclerViewFurnitureNearBy.setAdapter(furnitureNearByHomeAdapter);
+                        furnitureNearByBinding.recyclerViewFurnitureNearBy.setAdapter(furnitureNearByScreenAdapter);
 
                     } else {
                         furnitureNearByBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.GONE);

@@ -539,6 +539,32 @@
 
             </RelativeLayout>
 
+            <ProgressBar
+                android:id="@+id/progressBar_cyclic_Logout"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:theme="@style/ProgressBarColor"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_Logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="100dp"
+                android:background="@drawable/button_design"
+                android:gravity="center"
+                android:text="@string/login_app"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

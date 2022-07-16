@@ -11,24 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.furniture_gallery.Activites.SavingsOffersActivity;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
-import com.example.furniture_gallery.Model.UserResponseModel.CategoryHomeResponseModel;
-import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.OfferHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.ProductOfferHomeResponesModel;
 import com.example.furniture_gallery.R;
 import com.example.furniture_gallery.Retrofit_Api.Retrofit_Api;
-import com.example.furniture_gallery.ViewModel.HomeViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -63,7 +55,7 @@ public class SavesOfferHomeAdapter extends RecyclerView.Adapter<SavesOfferHomeAd
     @NonNull
     @Override
     public SavesOfferHomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.saves_discount_list_view,parent,false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.saves_offer_list_view,parent,false));
     }
 
     @Override

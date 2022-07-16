@@ -20,10 +20,13 @@ import com.example.furniture_gallery.Adapters.SavesOfferHomeAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelper;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
+import com.example.furniture_gallery.Model.UserModel.FurnitureNearByModel;
 import com.example.furniture_gallery.Model.UserModel.HomeModel;
+import com.example.furniture_gallery.Model.UserModel.LogoutModel;
 import com.example.furniture_gallery.Model.UserResponseModel.BranchTypeHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.CategoryHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.DiscountHomeResponseModel;
+import com.example.furniture_gallery.Model.UserResponseModel.FurnitureNearByResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.OfferHomeResponseModel;
 import com.example.furniture_gallery.Model.UserResponseModel.SavesDiscountHomeResponseModel;
@@ -42,7 +45,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
     List<OfferHomeResponseModel> offerHomeResponseModels = new ArrayList<>();
     List<SavesDiscountHomeResponseModel> savesDiscountHomeResponseModels = new ArrayList<>();
     List<DiscountHomeResponseModel> DiscountHomeResponseModels = new ArrayList<>();
-    List<BranchTypeHomeResponseModel> branchTypeHomeResponseModelArrayList = new ArrayList<>();
+    List<FurnitureNearByResponseModel> furnitureNearByResponseModels = new ArrayList<>();
     CategoryHomeAdapter categoryHomeAdapter;
     SavesOfferHomeAdapter savesOfferHomeAdapter;
     SavesDiscountHomeAdapter savesDiscountHomeAdapter;
@@ -68,6 +71,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         homeMainBinding.tvMoreWatchDiscountSaves.setOnClickListener(this);
         homeMainBinding.tvMoreWatchDiscount.setOnClickListener(this);
         homeMainBinding.tvMoreWatchFurnitureNearBy.setOnClickListener(this);
+        homeMainBinding.tvLogout.setOnClickListener(this);
 
         Toast.makeText(this, preferenceHelper.getAccessToken(), Toast.LENGTH_SHORT).show();
         Toast.makeText(this, preferenceHelperChoseLanguage.getLang(), Toast.LENGTH_SHORT).show();
@@ -94,7 +98,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         });
 
         homeMainBinding.progressBarCyclicCategoryList.setVisibility(View.VISIBLE);
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if (homeModel.getStatus()) {
@@ -126,7 +130,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
         homeMainBinding.progressBarCyclicSavesOffer.setVisibility(View.VISIBLE);
 
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if (homeModel.getStatus()) {
@@ -156,7 +160,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
         homeMainBinding.progressBarCyclicDiscountOffer.setVisibility(View.VISIBLE);
 
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if (homeModel.getStatus()) {
@@ -186,7 +190,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
         homeMainBinding.progressBarCyclicDiscount.setVisibility(View.VISIBLE);
 
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if (homeModel.getStatus()) {
@@ -216,15 +220,16 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
         homeMainBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.VISIBLE);
 
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.getFurnitureNearBy(25.2121212,24.1252152);
+
+        homeViewModel.furnitureNearByModelMutableLiveData.observe(this, new Observer<FurnitureNearByModel>() {
             @Override
-            public void onChanged(HomeModel homeModel) {
-                if (homeModel.getStatus()) {
-                    HomeResponseModel homeResponseModel = homeModel.getData();
-                    branchTypeHomeResponseModelArrayList = homeResponseModel.getBranchType();
-                    if (branchTypeHomeResponseModelArrayList.size() > 0) {
+            public void onChanged(FurnitureNearByModel furnitureNearByModel) {
+                if (furnitureNearByModel.getStatus()) {
+                    furnitureNearByResponseModels = furnitureNearByModel.getFurnitureNearByResponseModels();
+                    if (furnitureNearByResponseModels.size() > 0) {
                         homeMainBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.GONE);
-                        furnitureNearByHomeAdapter = new FurnitureNearByHomeAdapter( branchTypeHomeResponseModelArrayList);
+                        furnitureNearByHomeAdapter = new FurnitureNearByHomeAdapter(furnitureNearByResponseModels);
                         homeMainBinding.recyclerViewFurnitureNearBy.setLayoutManager(new LinearLayoutManager(HomeMainActivity.this, RecyclerView.HORIZONTAL, false));
                         homeMainBinding.recyclerViewFurnitureNearBy.setHasFixedSize(true);
                         homeMainBinding.recyclerViewFurnitureNearBy.setAdapter(furnitureNearByHomeAdapter);
@@ -242,6 +247,27 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    private void LogoutApp() {
+
+        homeViewModel.logoutApp(preferenceHelper.getAccessToken());
+
+        homeMainBinding.progressBarCyclicLogout.setVisibility(View.VISIBLE);
+        homeViewModel.logoutModelMutableLiveData.observe(this, new Observer<LogoutModel>() {
+            @Override
+            public void onChanged(LogoutModel logoutModel) {
+                if (logoutModel.getStatus()) {
+                    homeMainBinding.progressBarCyclicLogout.setVisibility(View.GONE);
+                    Toast.makeText(HomeMainActivity.this,logoutModel.getMessage() , Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(HomeMainActivity.this,LoginActivity.class));
+                    finish();
+
+                } else {
+                    homeMainBinding.progressBarCyclicLogout.setVisibility(View.GONE);
+                    Toast.makeText(HomeMainActivity.this, "no data with server", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
     @Override
     public void onClick(View view) {
@@ -260,6 +286,9 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.tv_moreWatchFurnitureNearBy:
                 startActivity(new Intent(HomeMainActivity.this, FurnitureNearByActivity.class));
+                break;
+            case R.id.tv_Logout:
+                LogoutApp();
                 break;
         }
     }

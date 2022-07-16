@@ -54,7 +54,7 @@ public class CategoryListActivity extends AppCompatActivity implements View.OnCl
         });
 
         categoryListBinding.progressBarCyclicCategoryList.setVisibility(View.VISIBLE);
-        homeViewModel.modelMutableLiveData.observe(this, new Observer<HomeModel>() {
+        homeViewModel.homeModelMutableLiveData.observe(this, new Observer<HomeModel>() {
             @Override
             public void onChanged(HomeModel homeModel) {
                 if(homeModel.getStatus()){

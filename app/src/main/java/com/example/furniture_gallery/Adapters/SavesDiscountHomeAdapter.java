@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -121,8 +122,8 @@ public class SavesDiscountHomeAdapter extends RecyclerView.Adapter<SavesDiscount
         ProgressBar progressBar_cyclic_DiscountSaves;
         SwipeRefreshLayout SwipeRefreshLayoutDiscountSaves;
         RecyclerView recyclerView_DiscountSaves;
-        ImageView ImageFurnitureDiscountSaves,ImageViewSliderDiscountSaves;
-
+        ImageView ImageViewSliderDiscountSaves;
+        CircleImageView ImageFurnitureDiscountSaves;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

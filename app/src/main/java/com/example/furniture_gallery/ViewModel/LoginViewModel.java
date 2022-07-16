@@ -22,7 +22,7 @@ public class LoginViewModel extends ViewModel {
 
                 if (response.code() == 200) {
                     loginModelMutableLiveData.setValue(response.body());
-                } else if (response.code() != 422) {
+                } else if (response.code() == 422) {
                     loginModelMutableLiveData.setValue(response.body());
                 }
 
