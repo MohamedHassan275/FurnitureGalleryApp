@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.furniture_gallery.Adapters.FurnitureNearByScreenAdapter;
 import com.example.furniture_gallery.Core.Language.Language;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelper;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.FurnitureNearByModel;
 import com.example.furniture_gallery.Model.UserResponseModel.FurnitureNearByResponseModel;
@@ -30,11 +31,13 @@ public class FurnitureNearByActivity extends AppCompatActivity {
     FurnitureViewModel furnitureViewModel;
     List<FurnitureNearByResponseModel> furnitureNearByResponseModels = new ArrayList<>();
     FurnitureNearByScreenAdapter furnitureNearByScreenAdapter;
+    PreferenceHelper preferenceHelper;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceHelper = PreferenceHelper.getInstans(this);
         preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(this);
         Language.changeLanguage(this,preferenceHelperChoseLanguage.getLang());
         furnitureNearByBinding = ActivityFurnitureNearByBinding.inflate(getLayoutInflater());
@@ -42,15 +45,18 @@ public class FurnitureNearByActivity extends AppCompatActivity {
 
         furnitureViewModel = new ViewModelProvider(this).get(FurnitureViewModel.class);
 
-        furnitureViewModel.getFurnitureNearBy(25.2121212,24.1252152);
+        furnitureViewModel.getFurnitureNearBy(preferenceHelper.getChooseLocationLatitude(),preferenceHelper.getChooseLocationLngtitude());
 
         furnitureNearByBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.VISIBLE);
+
+//        Toast.makeText(this, preferenceHelper.getChooseLocationLatitude(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, preferenceHelper.getChooseLocationLngtitude(), Toast.LENGTH_SHORT).show();
 
         furnitureNearByBinding.SwipeRefreshLayoutFurnitureNearBy.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                furnitureViewModel.getFurnitureNearBy(25.2121212,24.1252152);
+                furnitureViewModel.getFurnitureNearBy(preferenceHelper.getChooseLocationLatitude(),preferenceHelper.getChooseLocationLngtitude());
                 furnitureNearByBinding.SwipeRefreshLayoutFurnitureNearBy.setRefreshing(false);
 
             }

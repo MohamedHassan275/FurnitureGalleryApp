@@ -9,6 +9,8 @@ public class PreferenceHelper {
 
     private final String AccessToken = "AccessToken";
     private final String User_typeLogin = "User_typeLogin";
+    private final String chooseLocationLatitude = "chooseLocationLatitude";
+    private final String chooseLocationLngtitude = "chooseLocationLngtitude";
 
     private SharedPreferences app_prefs;
     private static Context mcontext;
@@ -35,9 +37,14 @@ public class PreferenceHelper {
         edit.commit();
     }
 
-    public void putUser_typeLogin(String loginorout) {
+    public void putChooseLocationLatitude(String loginorout) {
         SharedPreferences.Editor edit = app_prefs.edit();
-        edit.putString(User_typeLogin, loginorout);
+        edit.putString(chooseLocationLatitude, loginorout);
+        edit.commit();
+    }
+    public void putChooseLocationLngtitude(String loginorout) {
+        SharedPreferences.Editor edit = app_prefs.edit();
+        edit.putString(chooseLocationLngtitude, loginorout);
         edit.commit();
     }
 
@@ -47,6 +54,12 @@ public class PreferenceHelper {
 
     public String getUser_typeLogin() {
         return app_prefs.getString(User_typeLogin, "");
+    }
+    public String getChooseLocationLngtitude() {
+        return app_prefs.getString(chooseLocationLngtitude, "");
+    }
+    public String getChooseLocationLatitude() {
+        return app_prefs.getString(chooseLocationLatitude, "");
     }
 
 

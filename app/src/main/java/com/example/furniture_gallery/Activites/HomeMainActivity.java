@@ -49,6 +49,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
     List<DiscountHomeResponseModel> DiscountHomeResponseModels = new ArrayList<>();
     List<FurnitureNearByResponseModel> furnitureNearByResponseModels = new ArrayList<>();
     CategoryHomeAdapter categoryHomeAdapter;
+    String FullAccessToken;
     SavesOfferHomeAdapter savesOfferHomeAdapter;
     SavesDiscountHomeAdapter savesDiscountHomeAdapter;
     DiscountHomeAdapter DiscountHomeAdapter;
@@ -75,9 +76,11 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         homeMainBinding.tvMoreWatchFurnitureNearBy.setOnClickListener(this);
         homeMainBinding.tvLogout.setOnClickListener(this);
 
-        Toast.makeText(this, preferenceHelper.getAccessToken(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, preferenceHelperChoseLanguage.getLang(), Toast.LENGTH_SHORT).show();
-
+        FullAccessToken =  preferenceHelper.getAccessToken();
+        Toast.makeText(this, FullAccessToken, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, preferenceHelperChoseLanguage.getLang(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, preferenceHelper.getChooseLocationLatitude(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, preferenceHelper.getChooseLocationLngtitude(), Toast.LENGTH_SHORT).show();
 
         GetCategoryItem();
         GetSavesOfferItem();
@@ -220,10 +223,12 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
     private void GetFurnitureNearByItem() {
 
+
         homeMainBinding.progressBarCyclicFurnitureNearBy.setVisibility(View.VISIBLE);
 
         furnitureViewModel  = new ViewModelProvider(HomeMainActivity.this).get(FurnitureViewModel.class);
-        furnitureViewModel.getFurnitureNearBy(25.2121212,24.1252152);
+        furnitureViewModel.getFurnitureNearBy(preferenceHelper.getChooseLocationLatitude(),preferenceHelper.getChooseLocationLngtitude());
+
 
         furnitureViewModel.furnitureNearByModelMutableLiveData.observe(this, new Observer<FurnitureNearByModel>() {
             @Override
@@ -252,7 +257,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
 
     private void LogoutApp() {
 
-        homeViewModel.logoutApp(preferenceHelper.getAccessToken());
+        homeViewModel.logoutApp(FullAccessToken);
 
         homeMainBinding.progressBarCyclicLogout.setVisibility(View.VISIBLE);
         homeViewModel.logoutModelMutableLiveData.observe(this, new Observer<LogoutModel>() {
@@ -291,7 +296,7 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(HomeMainActivity.this, FurnitureNearByActivity.class));
                 break;
             case R.id.tv_Logout:
-                LogoutApp();
+               // LogoutApp();
                 break;
         }
     }

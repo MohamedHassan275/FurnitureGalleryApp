@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Furniture_Gallery</string>
+    <string name="app_name">Furniture Gallery</string>
     <string name="login_app">sign in</string>
     <string name="register_app">create account</string>
     <string name="email_address_mobile_phone">Email or phone number</string>
@@ -30,4 +30,6 @@
     <string name="check_location">location not enabled</string>
     <string name="open_location"> open location settings</string>
     <string name="cancel"> cancel</string>
+    <string name="selected">Continue </string>
+    <string name="title_activity_select_my_location">Map</string>
 </resources>

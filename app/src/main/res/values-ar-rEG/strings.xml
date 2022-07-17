@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Furniture_Gallery</string>
+    <string name="app_name">Furniture Gallery</string>
     <string name="login_app">تسجيل الدخول</string>
     <string name="register_app">انشاء حساب</string>
     <string name="email_address_mobile_phone">البريد الالكتروني او رقم الهاتف</string>
@@ -31,4 +31,6 @@
     <string name="check_location">الموقع غير مفعل</string>
     <string name="open_location"> فتح إعدادات الموقع</string>
     <string name="cancel"> الغاء</string>
+    <string name="selected">استمر</string>
+    <string name="title_activity_select_my_location">Map</string>
 </resources>

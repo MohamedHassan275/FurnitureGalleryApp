@@ -1,36 +1,67 @@
 package com.example.furniture_gallery.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.furniture_gallery.Core.Language.Language;
+import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelper;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
+import com.example.furniture_gallery.Model.UserModel.LoginModel;
+import com.example.furniture_gallery.Model.UserResponseModel.LoginResponseModel;
 import com.example.furniture_gallery.R;
+import com.example.furniture_gallery.ViewModel.RegisterViewModel;
 import com.example.furniture_gallery.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
     ActivityRegisterBinding registerBinding;
     private static final String KEY_EMPTY = "";
+    RegisterViewModel registerViewModel;
     String name,email,mobilePhone,address,password,confirmPassword;
+    PreferenceHelper preferenceHelper;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceHelper = PreferenceHelper.getInstans(this);
         preferenceHelperChoseLanguage = PreferenceHelperChoseLanguage.getInstans(this);
         Language.changeLanguage(this,preferenceHelperChoseLanguage.getLang());
         registerBinding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(registerBinding.getRoot());
+
+        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
 
         registerBinding.tvContinueSingUp.setOnClickListener(this);
         registerBinding.tvLoginByRegister.setOnClickListener(this);
 
     }
 
+    public void RegisterUser(String name, String email, String phone, String password, String confirmPassword, String lang, String address){
+
+        registerBinding.progressBarCyclicRegisterUser.setVisibility(View.VISIBLE);
+        registerViewModel.RegisterUser(name,email,phone,password,confirmPassword,lang,address);
+        registerViewModel.registerModelMutableLiveData.observe(RegisterActivity.this, new Observer<LoginModel>() {
+            @Override
+            public void onChanged(LoginModel loginModel) {
+                if (loginModel.getStatus()) {
+                    registerBinding.progressBarCyclicRegisterUser.setVisibility(View.GONE);
+                    LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
+                    preferenceHelper.putAccessToken(loginResponseModel.getToken());
+                    startActivity(new Intent(RegisterActivity.this,SelectMyLocationActivity.class));
+                    finish();
+
+                }else {
+
+                }
+            }
+        });
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -46,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     confirmPassword = registerBinding.etConfirmPasswordRegister.getText().toString().trim();
 
                    if(validateInputs()){
-                       startActivity(new Intent(this,HomeMainActivity.class));
+                       RegisterUser(name,email,mobilePhone,password,confirmPassword,preferenceHelperChoseLanguage.getLang(),address);
                    }
                     break;
         }

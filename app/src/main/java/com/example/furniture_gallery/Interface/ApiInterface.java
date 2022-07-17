@@ -33,7 +33,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("home/furniture-nearby")
-    Call<FurnitureNearByModel> GetFurnitureNearby(@Field("lat") double lat, @Field("lng") double lng);
+    Call<FurnitureNearByModel> GetFurnitureNearby(@Field("lat") String lat, @Field("lng") String lng);
 
     @GET("logout")
     Call<LogoutModel> LogoutApp(@Header("Authorization") String Authorization);
@@ -49,6 +49,15 @@ public interface ApiInterface {
 
     @GET("home/discounts")
     Call<DiscountsModel> GetDiscounts(@Query("price") String price);
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<LoginModel> RegisterUser(@Field("name") String name, @Field("email") String email,
+                                         @Field("phone") String phone,
+                                         @Field("password") String password,
+                                         @Field("password_confirmation") String password_confirmation,
+                                         @Field("lang") String lang,
+                                         @Field("address") String address);
 
 //    @GET("countries")
 //    Call<CountiresModel> getCountries();

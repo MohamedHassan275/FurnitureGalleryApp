@@ -42,13 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String email, password;
     LoginViewModel loginViewModel;
     PreferenceHelper preferenceHelper;
-    private GpsTracker gpsTracker;
-    private TextView tvLatitude, tvLongitude;
     PreferenceHelperChoseLanguage preferenceHelperChoseLanguage;
-    double latitude, longitude;
-    LocationManager lm;
-    boolean gps_enabled = false;
-    boolean network_enabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +57,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if (!preferenceHelper.getAccessToken().equals("")) {
-            startActivity(new Intent(LoginActivity.this, HomeMainActivity.class));
+            startActivity(new Intent(LoginActivity.this, SelectMyLocationActivity.class));
             finish();
         } else {
 
         }
-        getLocation(LoginActivity.this);
+
+    //    getLocation(LoginActivity.this);
 
         loginBinding.tvRegisterByLogin.setOnClickListener(this);
         loginBinding.tvContinueSingIn.setOnClickListener(new View.OnClickListener() {
@@ -79,36 +74,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 password = loginBinding.etPasswordLogin.getText().toString().trim();
 
                 if (validateInputs()) {
-                    if ((latitude == 0.0 && longitude == 0.0)) {
-                        getLocation(LoginActivity.this);
-                        loginBinding.progressBarCyclicLoginUser.setVisibility(View.VISIBLE);
-                        loginViewModel.LoginUser(email, password);
-                        loginViewModel.loginModelMutableLiveData.observe(LoginActivity.this, new Observer<LoginModel>() {
-                            @Override
-                            public void onChanged(LoginModel loginModel) {
+                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.VISIBLE);
+                    loginViewModel.LoginUser(email, password);
+                    loginViewModel.loginModelMutableLiveData.observe(LoginActivity.this, new Observer<LoginModel>() {
+                        @Override
+                        public void onChanged(LoginModel loginModel) {
 
-                                if (loginModel.getStatus()) {
-                                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
-                                    LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
-                                    preferenceHelper.putAccessToken(loginResponseModel.getToken());
-                                    Intent intent = new Intent(LoginActivity.this, HomeMainActivity.class);
-                                    intent.putExtra("latitude", latitude);
-                                    intent.putExtra("longitude", longitude);
-                                    startActivity(intent);
-                                    finish();
+                            if (loginModel.getStatus()) {
+                                loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
+                                LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
+                                preferenceHelper.putAccessToken(loginResponseModel.getToken());
+                                Intent intent = new Intent(LoginActivity.this, HomeMainActivity.class);
+                                startActivity(intent);
+                                finish();
 
-                                } else {
-                                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
-                                    Toast.makeText(LoginActivity.this, loginModel.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
+                            } else {
+                                loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
+                                Toast.makeText(LoginActivity.this, loginModel.getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        });
-                    } else {
-                        getLocation(LoginActivity.this);
-                        Toast.makeText(LoginActivity.this, "يرجي عمل allow في اعدادات التطبيق لاكمال التسجيل ", Toast.LENGTH_SHORT).show();
-                    }
-
-
+                        }
+                    });
                 }
             }
         });
@@ -120,30 +105,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public void checkLocation(Context context) {
-        try {
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        if (!gps_enabled && !network_enabled) {
-            // notify user
-            new AlertDialog.Builder(context)
-                    .setMessage(R.string.check_location)
-                    .setPositiveButton(R.string.open_location, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                            context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, null)
-                    .show();
-        }
-
-    }
 
     public void LoginUser(String userName, String password) {
         loginBinding.progressBarCyclicLoginUser.setVisibility(View.VISIBLE);
@@ -179,17 +140,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    public void getLocation(Context context) {
-        gpsTracker = new GpsTracker(context);
-        if (gpsTracker.canGetLocation()) {
-            latitude = gpsTracker.getLatitude();
-            longitude = gpsTracker.getLongitude();
-            loginBinding.latitude.setText(String.valueOf(latitude));
-            loginBinding.longitude.setText(String.valueOf(longitude));
-        } else {
-            checkLocation(context);
-        }
-    }
 
     @Override
     public void onClick(View view) {

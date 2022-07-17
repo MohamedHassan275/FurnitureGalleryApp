@@ -17,7 +17,7 @@ public class FurnitureViewModel extends ViewModel {
    public MutableLiveData<FurnitureNearByModel> furnitureNearByModelMutableLiveData = new MutableLiveData<>();
 
 
-    public void getFurnitureNearBy(double lat,double lng){
+    public void getFurnitureNearBy(String lat,String lng){
         Call<FurnitureNearByModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetFurnitureNearby(lat,lng);
         call.enqueue(new Callback<FurnitureNearByModel>() {
             @Override

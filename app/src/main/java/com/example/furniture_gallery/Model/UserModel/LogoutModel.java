@@ -1,5 +1,6 @@
 package com.example.furniture_gallery.Model.UserModel;
 
+import com.example.furniture_gallery.Model.UserResponseModel.HomeResponseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +8,7 @@ public class LogoutModel {
 
     @SerializedName("data")
     @Expose
-    private Object data;
+    private HomeResponseModel data;
     @SerializedName("message")
     @Expose
     private String message;
@@ -15,11 +16,11 @@ public class LogoutModel {
     @Expose
     private Boolean status;
 
-    public Object getData() {
+    public HomeResponseModel getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(HomeResponseModel data) {
         this.data = data;
     }
 

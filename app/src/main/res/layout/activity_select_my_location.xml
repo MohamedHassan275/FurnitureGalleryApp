@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activites.SelectMyLocationActivity">
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <fragment
+            android:id="@+id/mapGetLocationMap"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/ImageGetMyLocation_SelectMap"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_above="@+id/ImageZoomIn_SelectMap"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/location_map" />
+
+        <ImageView
+            android:id="@+id/ImageZoomIn_SelectMap"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/ImageZoomOut_SelectMap"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/zoom_in_map" />
+
+        <ImageView
+            android:id="@+id/ImageZoomOut_SelectMap"
+            android:layout_width="40dp"
+            android:layout_gravity="center"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="25dp"
+            android:layout_height="40dp"
+            android:src="@drawable/zoom_out_map"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Tv_TextMyLocation"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="please select your location"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/Color_App1"
+        android:shadowRadius="5"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/Tv_TextMyLocationLatAndLng"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/Color_App1"
+        android:shadowRadius="5"
+        android:textSize="16sp"/>
+
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="160dp">
+
+
+        <TextView
+            android:visibility="visible"
+            android:id="@+id/Tv_MyLocationMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/Color_App1"
+            android:shadowRadius="5"
+            android:textSize="16sp"/>
+
+
+        <TextView
+            android:id="@+id/tv_Continue_SelectMyLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ViewLineOffer"
+            android:layout_gravity="center"
+            android:layout_marginStart="15sp"
+            android:layout_marginEnd="15sp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/button_design"
+            android:gravity="center"
+            android:text="@string/selected"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible" />
+
+
+        <View
+            android:id="@+id/ViewLineOffer"
+            android:layout_width="match_parent"
+            android:layout_height="3sp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="100sp"
+            android:layout_marginEnd="100sp"
+            android:layout_marginBottom="10sp"
+            android:background="@color/Color_App1" />
+
+    </RelativeLayout>
+
+</LinearLayout>
