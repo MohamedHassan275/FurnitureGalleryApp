@@ -44,13 +44,13 @@ public class SavingsOffersActivity extends AppCompatActivity implements View.OnC
 
         offerViewModel = new ViewModelProvider(this).get(OfferViewModel.class);
 
-        offerViewModel.GetOffer("DESC");
+        offerViewModel.GetOffer("ASC");
 
         savesOfferBinding.SwipeRefreshLayoutCategoryList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                offerViewModel.GetOffer("DESC");
+                offerViewModel.GetOffer("ASC");
                 savesOfferBinding.SwipeRefreshLayoutCategoryList.setRefreshing(false);
 
             }

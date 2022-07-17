@@ -54,7 +54,7 @@ public interface ApiInterface {
     Call<OfferModel> GetOffer(@Query("price") String price);
 
     @GET("home/saves")
-    Call<SaveOfferModel> GetSaveOffer(@Query("price") String price);
+    Call<SaveOfferModel> GetSaveDiscount(@Query("price") String price);
 
     @GET("home/discounts")
     Call<DiscountsModel> GetDiscounts(@Query("price") String price);

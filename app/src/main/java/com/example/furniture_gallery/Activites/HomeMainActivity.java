@@ -70,8 +70,8 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
         homeViewModel.getDetailsHome(preferenceHelper.getAccessToken(), preferenceHelperChoseLanguage.getLang());
 
         homeMainBinding.tvMoreWatchCategory.setOnClickListener(this);
-        homeMainBinding.tvMoreWatchSavesDiscount.setOnClickListener(this);
-        homeMainBinding.tvMoreWatchDiscountSaves.setOnClickListener(this);
+        homeMainBinding.tvMoreWatchSavesOffer.setOnClickListener(this);
+        homeMainBinding.tvMoreWatchSaveDiscount.setOnClickListener(this);
         homeMainBinding.tvMoreWatchDiscount.setOnClickListener(this);
         homeMainBinding.tvMoreWatchFurnitureNearBy.setOnClickListener(this);
         homeMainBinding.tvLogout.setOnClickListener(this);
@@ -283,10 +283,10 @@ public class HomeMainActivity extends AppCompatActivity implements View.OnClickL
             case R.id.tv_moreWatchCategory:
                 startActivity(new Intent(HomeMainActivity.this, CategoryListActivity.class));
                 break;
-            case R.id.tv_moreWatchSavesDiscount:
+            case R.id.tv_moreWatchSavesOffer:
                 startActivity(new Intent(HomeMainActivity.this, SavingsOffersActivity.class));
                 break;
-            case R.id.tv_moreWatchDiscountSaves:
+            case R.id.tv_moreWatchSaveDiscount:
                 startActivity(new Intent(HomeMainActivity.this, DiscountSavesActivity.class));
                 break;
             case R.id.tv_moreWatchDiscount:

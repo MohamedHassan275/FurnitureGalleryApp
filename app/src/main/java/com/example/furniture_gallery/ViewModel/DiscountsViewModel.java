@@ -15,7 +15,7 @@ public class DiscountsViewModel extends ViewModel {
 
     public MutableLiveData<DiscountsModel> discountsModelMutableLiveData = new MutableLiveData<>();
 
-    public void GetOffer(String price){
+    public void GetDiscount(String price){
         Call<DiscountsModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetDiscounts(price);
         call.enqueue(new Callback<DiscountsModel>() {
             @Override

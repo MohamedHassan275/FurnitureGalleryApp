@@ -45,13 +45,13 @@ public class DiscountSavesActivity extends AppCompatActivity implements View.OnC
 
         saveOfferViewModel = new ViewModelProvider(this).get(SaveOfferViewModel.class);
 
-        saveOfferViewModel.GetOffer("DESC");
+        saveOfferViewModel.GetSaveDiscount("DESC");
 
         discountSavesBinding.SwipeRefreshLayoutDiscountSaves.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                saveOfferViewModel.GetOffer("DESC");
+                saveOfferViewModel.GetSaveDiscount("DESC");
                 discountSavesBinding.SwipeRefreshLayoutDiscountSaves.setRefreshing(false);
 
             }

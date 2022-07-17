@@ -3,7 +3,6 @@ package com.example.furniture_gallery.ViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.furniture_gallery.Model.UserModel.OfferModel;
 import com.example.furniture_gallery.Model.UserModel.SaveOfferModel;
 import com.example.furniture_gallery.Retrofit_Api.Retrofit_Api;
 
@@ -15,8 +14,8 @@ public class SaveOfferViewModel extends ViewModel {
 
     public MutableLiveData<SaveOfferModel> saveOfferModelMutableLiveData = new MutableLiveData<>();
 
-    public void GetOffer(String price){
-        Call<SaveOfferModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetSaveOffer(price);
+    public void GetSaveDiscount(String price){
+        Call<SaveOfferModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().GetSaveDiscount(price);
         call.enqueue(new Callback<SaveOfferModel>() {
             @Override
             public void onResponse(Call<SaveOfferModel> call, Response<SaveOfferModel> response) {

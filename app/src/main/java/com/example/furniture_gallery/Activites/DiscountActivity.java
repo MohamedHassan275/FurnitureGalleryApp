@@ -43,13 +43,13 @@ public class DiscountActivity extends AppCompatActivity {
         setContentView(discountBinding.getRoot());
 
         discountsViewModel = new ViewModelProvider(this).get(DiscountsViewModel.class);
-        discountsViewModel.GetOffer("DESC");
+        discountsViewModel.GetDiscount("DESC");
 
         discountBinding.SwipeRefreshLayoutDiscount.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                discountsViewModel.GetOffer("DESC");
+                discountsViewModel.GetDiscount("DESC");
                 discountBinding.SwipeRefreshLayoutDiscount.setRefreshing(false);
 
             }

@@ -195,7 +195,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_moreWatchSavesDiscount"
+                    android:id="@+id/tv_moreWatchSavesOffer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -281,7 +281,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_moreWatchDiscountSaves"
+                    android:id="@+id/tv_moreWatchSaveDiscount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
