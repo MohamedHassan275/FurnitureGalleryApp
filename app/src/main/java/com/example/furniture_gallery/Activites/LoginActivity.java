@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -40,6 +45,8 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -77,6 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
+
     //    getLocation(LoginActivity.this);
 
         callbackManager = CallbackManager.Factory.create();
@@ -87,6 +95,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginBinding.tvContinueSingIn.setOnClickListener(this);
         loginBinding.uiImageViewPasswordLogin.setOnClickListener(this);
 
+        getHashkey();
+
+    }
+
+    public void getHashkey() {
+
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    getPackageName(),
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest messageDigest = MessageDigest.getInstance("SHA");
+                messageDigest.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
 
     }
 
