@@ -1,35 +1,22 @@
 package com.example.furniture_gallery.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.furniture_gallery.Core.Classes.GpsTracker;
 import com.example.furniture_gallery.Core.Language.Language;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelper;
 import com.example.furniture_gallery.Core.SharedPrefrance.PreferenceHelperChoseLanguage;
 import com.example.furniture_gallery.Model.UserModel.LoginModel;
 import com.example.furniture_gallery.Model.UserResponseModel.LoginResponseModel;
 import com.example.furniture_gallery.R;
-import com.example.furniture_gallery.Retrofit_Api.Retrofit_Api;
 import com.example.furniture_gallery.ViewModel.LoginViewModel;
 import com.example.furniture_gallery.databinding.ActivityLoginBinding;
 import com.facebook.CallbackManager;
@@ -54,10 +41,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -98,20 +81,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         callbackManager = CallbackManager.Factory.create();
 
-        loginBinding.tvSingInFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (view == loginBinding.tvSingInFacebook) {
-                    // facbooklogin_button.setReadPermissions(Arrays.asList("email"));
-                    //  LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email", "public_profile"));
-
-                    LoginWithFaceBook();
-                }
-
-            }
-        });
-
+        loginBinding.tvSingInFacebook.setOnClickListener(this);
+        loginBinding.tvSingInGoogle.setOnClickListener(this);
         loginBinding.tvRegisterByLogin.setOnClickListener(this);
         loginBinding.tvContinueSingIn.setOnClickListener(this);
         loginBinding.uiImageViewPasswordLogin.setOnClickListener(this);
@@ -178,22 +149,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
     }
+    private void SetLoginUser(String email, String password) {
+
+        loginBinding.progressBarCyclicLoginUser.setVisibility(View.VISIBLE);
+        loginViewModel.LoginUser(email, password);
+        loginViewModel.loginModelMutableLiveData.observe(LoginActivity.this, new Observer<LoginModel>() {
+            @Override
+            public void onChanged(LoginModel loginModel) {
+
+                if (loginModel.getStatus()) {
+                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
+                    LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
+                    preferenceHelper.putAccessToken(loginResponseModel.getToken());
+                    Intent intent = new Intent(LoginActivity.this, HomeMainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, loginModel.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
 
     public void SetLoginByFaceBook(String providerType, String providerId, String name, String email) {
 
         loginBinding.progressBarCyclicLoginUser.setVisibility(View.VISIBLE);
-        loginViewModel.LoginUserByFacebook(providerType,providerId,name,email);
+        loginViewModel.LoginUserBySocial(providerType,providerId,name,email);
         loginViewModel.loginModelMutableLiveData.observe(LoginActivity.this, new Observer<LoginModel>() {
            @Override
            public void onChanged(LoginModel loginModel) {
 
                if (loginModel.getStatus()){
                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
-                   LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
-                   preferenceHelper.putAccessToken(loginResponseModel.getToken());
-                   Intent intent = new Intent(LoginActivity.this, HomeMainActivity.class);
-                   startActivity(intent);
-                   finish();
+                   CheckLoginBySocial(providerType,providerId);
 
                }else {
                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
@@ -206,18 +197,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void SetLoginByGoogle(String providerType, String providerId, String name, String email) {
 
         loginBinding.progressBarCyclicLoginUser.setVisibility(View.VISIBLE);
-        loginViewModel.LoginUserByFacebook(providerType,providerId,name,email);
+        loginViewModel.LoginUserBySocial(providerType,providerId,name,email);
         loginViewModel.loginModelMutableLiveData.observe(LoginActivity.this, new Observer<LoginModel>() {
            @Override
            public void onChanged(LoginModel loginModel) {
 
                if (loginModel.getStatus()){
                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
-                   LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
-                   preferenceHelper.putAccessToken(loginResponseModel.getToken());
-                   Intent intent = new Intent(LoginActivity.this, HomeMainActivity.class);
-                   startActivity(intent);
-                   finish();
+                   CheckLoginBySocial(providerType,providerId);
 
                }else {
                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
@@ -225,6 +212,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                }
            }
        });
+    }
+
+    public void CheckLoginBySocial(String providerType, String providerId) {
+
+        loginBinding.progressBarCyclicLoginUser.setVisibility(View.VISIBLE);
+        loginViewModel.CheckLoginBySocial(providerType,providerId);
+        loginViewModel.loginModelMutableLiveData.observe(LoginActivity.this, new Observer<LoginModel>() {
+            @Override
+            public void onChanged(LoginModel loginModel) {
+
+                if (loginModel.getStatus()){
+                    LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
+                    preferenceHelper.putAccessToken(loginResponseModel.getToken());
+                    Intent intent = new Intent(LoginActivity.this, SelectMyLocationActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }else {
+                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, loginModel.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 
@@ -294,28 +304,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.tv_Continue_SingIn:
                 email = loginBinding.etEmailLogin.getText().toString().trim();
                 password = loginBinding.etPasswordLogin.getText().toString().trim();
-
                 if (validateInputs()) {
-                    loginBinding.progressBarCyclicLoginUser.setVisibility(View.VISIBLE);
-                    loginViewModel.LoginUser(email, password);
-                    loginViewModel.loginModelMutableLiveData.observe(LoginActivity.this, new Observer<LoginModel>() {
-                        @Override
-                        public void onChanged(LoginModel loginModel) {
-
-                            if (loginModel.getStatus()) {
-                                loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
-                                LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
-                                preferenceHelper.putAccessToken(loginResponseModel.getToken());
-                                Intent intent = new Intent(LoginActivity.this, HomeMainActivity.class);
-                                startActivity(intent);
-                                finish();
-
-                            } else {
-                                loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
-                                Toast.makeText(LoginActivity.this, loginModel.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                    SetLoginUser(email,password);
                 }
                 break;
             case R.id.tv_register_byLogin:
@@ -323,6 +313,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.ui_ImageViewPasswordLogin:
 
+                break;
+            case R.id.tv_SingIn_facebook:
+                if (view == loginBinding.tvSingInFacebook) {
+                    // facbooklogin_button.setReadPermissions(Arrays.asList("email"));
+                    //  LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email", "public_profile"));
+
+                    LoginWithFaceBook();
+                }
                 break;
             case R.id.tv_SingIn_google:
                 LoginWithGoogle();

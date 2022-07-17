@@ -37,6 +37,10 @@ public interface ApiInterface {
             @Field("name") String name, @Field("email") String email);
 
     @FormUrlEncoded
+    @POST("check/social")
+    Call<LoginModel> CheckLoginUserBySocial(@Field("provider_type") String provider_type, @Field("provider_id") String provider_id);
+
+    @FormUrlEncoded
     @POST("home/furniture-nearby")
     Call<FurnitureNearByModel> GetFurnitureNearby(@Field("lat") String lat, @Field("lng") String lng);
 
