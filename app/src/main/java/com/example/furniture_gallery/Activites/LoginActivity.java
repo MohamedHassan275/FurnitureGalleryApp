@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void LoginWithFaceBook() {
 
-        facbooklogin_button.performClick();
+        loginBinding.loginButtonFaceBook.performClick();
         LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email", "public_profile"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
