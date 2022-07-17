@@ -32,6 +32,11 @@ public interface ApiInterface {
     Call<LoginModel> LoginUser(@Field("username") String username, @Field("password") String password);
 
     @FormUrlEncoded
+    @POST("login/social")
+    Call<LoginModel> LoginUserByFaceBook(@Field("provider_type") String provider_type, @Field("provider_id") String provider_id,
+            @Field("name") String name, @Field("email") String email);
+
+    @FormUrlEncoded
     @POST("home/furniture-nearby")
     Call<FurnitureNearByModel> GetFurnitureNearby(@Field("lat") String lat, @Field("lng") String lng);
 

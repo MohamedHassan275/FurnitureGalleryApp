@@ -5,6 +5,9 @@
     <string name="register_app">انشاء حساب</string>
     <string name="email_address_mobile_phone">البريد الالكتروني او رقم الهاتف</string>
     <string name="email_address">البريد الالكتروني</string>
+    <string name="facebook_app_id">4757100754312293</string>
+    <string name="fb_login_protocol_scheme">fb4757100754312293</string>
+    <string name="server_client_id"> 547063312555-q2i6hv60rc7g1pcsmgurugbsomve00nu.apps.googleusercontent.com</string>
     <string name="name">الاسم</string>
     <string name="mobile_phone">رقم الهاتف</string>
     <string name="confirm_password">تأكيد كلمة السر</string>

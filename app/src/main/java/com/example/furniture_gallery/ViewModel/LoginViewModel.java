@@ -34,4 +34,25 @@ public class LoginViewModel extends ViewModel {
             }
         });
     }
+
+    public void LoginUserByFacebook(String providerType, String providerId, String name, String email){
+        Call<LoginModel> call = Retrofit_Api.RETROFIT_API_INSTANCE().LoginUserByFaceBook(providerType,providerId,name,email);
+        call.enqueue(new Callback<LoginModel>() {
+            @Override
+            public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
+
+                if (response.code() == 200) {
+                    loginModelMutableLiveData.setValue(response.body());
+                } else if (response.code() == 422) {
+                    loginModelMutableLiveData.setValue(response.body());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginModel> call, Throwable t) {
+
+            }
+        });
+    }
 }
