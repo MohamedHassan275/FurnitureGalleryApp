@@ -190,7 +190,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     loginBinding.progressBarCyclicLoginUser.setVisibility(View.GONE);
                     LoginResponseModel loginResponseModel = loginModel.getLoginResponseModel();
                     preferenceHelper.putAccessToken(loginResponseModel.getToken());
-                    Intent intent = new Intent(LoginActivity.this, HomeMainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, SelectMyLocationActivity.class);
                     startActivity(intent);
                     finish();
 
